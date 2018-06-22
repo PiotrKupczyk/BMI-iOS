@@ -40,6 +40,7 @@ class BmiCouter {
     }
     
     func cout() -> Double {
+        //mass in kg / height^2 in meters
         return kilograms.value/(pow(centimeters.converted(to: UnitLength.meters).value, 2))
     }
 
@@ -53,4 +54,4 @@ class BmiCouter {
     var feet: Measurement<Dimension>
     var inches: Measurement<Dimension>
     var pounds: Measurement<Dimension>
-    }
+}
