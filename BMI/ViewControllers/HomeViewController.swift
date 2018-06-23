@@ -9,33 +9,38 @@
 import UIKit
 import Foundation
 
-class HomeViewController: UIViewController {
+class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     let segmentedControl = UISegmentedControl(items: ["Metric", "Imperial"])
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
 
         self.view.backgroundColor = .white
         setUpNavigationBar()
-        switchToMetrics()
+//        switchToMetrics()
+        collectionView?.register(MetricalCollectionViewCell.self, forCellWithReuseIdentifier: "cellId")
+        collectionView?.isPagingEnabled = true
     }
     
-    lazy var imperialViewController: ImperialViewController = {
-        var viewController = ImperialViewController()
-        self.addChildViewControllerAsContainer(childViewController: viewController)
-        
-        return viewController
-    }()
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return segmentedControl.numberOfSegments
+    }
     
-    lazy var metricsViewController: MetricsViewController = {
-        var viewController = MetricsViewController()
-        self.addChildViewControllerAsContainer(childViewController: viewController)
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath)
         
-        return viewController
-    }()
+//        cell.backgroundColor = .purple
+        segmentedControl.selectedSegmentIndex = indexPath.row
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let bounds = view.bounds
+        let navheight = navigationController?.navigationBar.frame.height
+        return CGSize(width: bounds.width, height: bounds.height - navheight!)
+    }
     
     private func setUpNavigationBar() {
         segmentedControl.selectedSegmentIndex = 0
@@ -51,44 +56,22 @@ class HomeViewController: UIViewController {
         //Setup navigation bar
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: segmentedControl)
         navigationItem.title = "BMI"
-        navigationController?.hidesBarsOnSwipe = true
+//        navigationController?.hidesBarsOnSwipe = true
     }
     
     @objc func switchUnits(_ sender: UISegmentedControl!) {
         switch sender.selectedSegmentIndex {
         case 0:
-            switchToMetrics()
+//            switchToMetrics()
+            print("0")
         default:
-            switchToImperial()
+//            switchToImperial()
+            print("0")
         }
     }
-
-    
-    private func addChildViewControllerAsContainer(childViewController: UIViewController) {
-        addChildViewController(childViewController)
-        let childView = childViewController.view
-        
-        view.addSubview(childView!)
-        childView?.frame = view.bounds
-        childViewController.didMove(toParentViewController: self)
-        
-    }
-    
-    private func switchToMetrics() {
-        imperialViewController.view.isHidden = true
-        metricsViewController.view.isHidden = false
-    }
-
-    private func switchToImperial() {
-        imperialViewController.view.isHidden = false
-        metricsViewController.view.isHidden = true
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
 
