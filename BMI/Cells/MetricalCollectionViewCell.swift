@@ -8,91 +8,50 @@
 
 import UIKit
 
-class MetricalCollectionViewCell: UICollectionViewCell {
+class MetricalCollectionViewCell: AbstractCollectionViewCell {
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupViews()
-    }
-    
-    let heightLabel:UILabel = {
-        let label = UILabel()
-        label.backgroundColor = .blue
-        label.textAlignment = .center
-
-        return label
-    }()
-    
-    let weightLabel:UILabel = {
-        let label = UILabel()
-        label.backgroundColor = .blue
-        return label
-    }()
-    
-    let heightUnitLabel:UILabel = {
-        let label = UILabel()
-        label.backgroundColor = .blue
-        label.textAlignment = .center
-
-        return label
-    }()
-    
-    let weightUnitLabel: UILabel = {
-        let label = UILabel()
-        label.backgroundColor = .blue
-        return label
-    }()
-    
-    let countButton: UIButton = {
-        let button = UIButton()
-        button.titleLabel?.text = "Counter BMI"
-        button.backgroundColor = .blue
-        return button
-    }()
-    
-    let container: UIView = {
-        let view = UIView()
-        view.backgroundColor = .purple
-        return view
-    }()
-    
-    let resultLabel: UILabel = {
-        let label = UILabel()
-        label.backgroundColor = .red
-        label.text = "BMI here"
-        label.textAlignment = .center
-        return label
-    }()
-    
-    
-    private func setupViews() {
+    override func setupViews() {
         addSubview(container)
         addSubview(resultLabel)
         
-        container.addSubview(heightLabel)
-        container.addSubview(heightUnitLabel)
-        container.addSubview(weightLabel)
-        container.addSubview(weightUnitLabel)
-        container.addSubview(countButton)
+        container.addSubview(valuesContainer)
         
-        let defaulHeight = CGFloat(80)
+        valuesContainer.addSubview(heightContainer)
+        valuesContainer.addSubview(weightContainer)
+        valuesContainer.addSubview(countButton)
+        
+        heightContainer.addSubview(height)
+        heightContainer.addSubview(heightLabel)
+        
+        weightContainer.addSubview(weight)
+        weightContainer.addSubview(weightLabel)
+        
+        let defaulHeight = CGFloat(45)
+        let labelWidth = CGFloat(60)
         
         container.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .zero, size: CGSize(width: 0, height: 2*self.frame.height/3))
         
         resultLabel.anchor(top: container.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
         
-        heightLabel.anchor(top: container.topAnchor, leading: container.leadingAnchor, bottom: nil, trailing: nil, padding: UIEdgeInsets(top: 30, left: 30, bottom: 0, right: 0), size: CGSize(width: defaulHeight*2, height: defaulHeight))
-
-        heightUnitLabel.anchor(top: heightLabel.topAnchor, leading: heightLabel.trailingAnchor, bottom: heightLabel.bottomAnchor, trailing: nil, padding: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0), size: CGSize(width: defaulHeight, height: 0))
+        valuesContainer.anchor(top: container.topAnchor, leading: container.leadingAnchor, bottom: container.bottomAnchor, trailing: container.trailingAnchor, padding: UIEdgeInsets(top: 60, left: 60, bottom: -60, right: -60))
         
-        weightLabel.anchor(top: heightLabel.bottomAnchor, leading: heightLabel.leadingAnchor, bottom: nil, trailing: heightLabel.trailingAnchor, padding: UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0), size: CGSize(width: 0, height: defaulHeight))
+        heightContainer.anchor(top: valuesContainer.topAnchor, leading: valuesContainer.leadingAnchor, bottom: nil, trailing: valuesContainer.trailingAnchor, padding: UIEdgeInsets(top: 4, left: 4, bottom: 0, right: -4), size: CGSize(width: 0, height: defaulHeight))
         
-        weightUnitLabel.anchor(top: weightLabel.topAnchor, leading: weightLabel.trailingAnchor, bottom: weightLabel.bottomAnchor, trailing: nil, padding: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0), size: CGSize(width: defaulHeight, height: 0))
+        weightContainer.anchor(top: heightContainer.bottomAnchor, leading: heightContainer.leadingAnchor, bottom: nil, trailing: heightContainer.trailingAnchor, padding: UIEdgeInsets(top: 32, left: 0, bottom: 0, right: 0), size: CGSize(width: 0, height: defaulHeight))
         
-        countButton.anchor(top: weightLabel.bottomAnchor, leading: container.leadingAnchor, bottom: container.bottomAnchor, trailing: container.trailingAnchor, padding: UIEdgeInsets(top: 30, left: 30, bottom: -30, right: -30))
+        //set up height container
+        heightLabel.anchor(top: heightContainer.topAnchor, leading: heightContainer.leadingAnchor, bottom: heightContainer.bottomAnchor, trailing: nil, padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), size: CGSize(width: labelWidth, height: defaulHeight))
+        
+        height.anchor(top: heightContainer.topAnchor, leading: heightLabel.trailingAnchor, bottom: heightContainer.bottomAnchor, trailing: heightContainer.trailingAnchor, padding: UIEdgeInsets(top: 0, left: 45, bottom: 0, right: -8))
+        
+        //set up weight container
+        
+        weightLabel.anchor(top: weightContainer.topAnchor, leading: weightContainer.leadingAnchor, bottom: weightContainer.bottomAnchor, trailing: nil, padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), size: CGSize(width: labelWidth, height: 0))
+        
+        weight.anchor(top: weightContainer.topAnchor, leading: weightLabel.trailingAnchor, bottom: weightContainer.bottomAnchor, trailing: weightContainer.trailingAnchor, padding: UIEdgeInsets(top: 0, left: 45, bottom: 0, right: -8))
+        
+        countButton.anchor(top: weightContainer.bottomAnchor, leading: weightContainer.leadingAnchor, bottom: valuesContainer.bottomAnchor, trailing: weightContainer.trailingAnchor, padding: UIEdgeInsets(top: 60, left: 30, bottom: -60, right: -30))
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+
 }

@@ -11,27 +11,26 @@ import Foundation
 
 class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    let segmentedControl = UISegmentedControl(items: ["Metric", "Imperial"])
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-
+        
         self.view.backgroundColor = .white
         setUpNavigationBar()
-//        switchToMetrics()
-        collectionView?.register(MetricalCollectionViewCell.self, forCellWithReuseIdentifier: "cellId")
-        collectionView?.isPagingEnabled = true
+        setupCollectionView()
     }
+    
+    let cellsIds = ["Metric", "Imperial"]
+    let segmentedControl = UISegmentedControl(items: ["Metric", "Imperial"])
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return segmentedControl.numberOfSegments
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellsIds[indexPath.row], for: indexPath)
         
-//        cell.backgroundColor = .purple
+    
         segmentedControl.selectedSegmentIndex = indexPath.row
         return cell
     }
@@ -46,9 +45,11 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         segmentedControl.selectedSegmentIndex = 0
         
         //style segmented control
-        segmentedControl.layer.cornerRadius = 5.0
         segmentedControl.backgroundColor = .clear
-        segmentedControl.tintColor = .black
+        segmentedControl.tintColor = UIColor.AppColors.darkPrimaryColor
+        segmentedControl.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.black], for: UIControlState.selected)
+        segmentedControl.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.black], for: UIControlState.normal)
+        segmentedControl.layer.borderColor = UIColor.black.cgColor
         
         //setup functionality
         segmentedControl.addTarget(self, action: #selector(switchUnits(_:)), for: .valueChanged)
@@ -57,6 +58,18 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: segmentedControl)
         navigationItem.title = "BMI"
 //        navigationController?.hidesBarsOnSwipe = true
+        
+        navigationController?.navigationBar.barTintColor = UIColor.AppColors.primaryColor
+    }
+    
+    func setupCollectionView() {
+        if let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.minimumLineSpacing = 0
+            flowLayout.scrollDirection = .horizontal
+        }
+        collectionView?.register(MetricalCollectionViewCell.self, forCellWithReuseIdentifier: cellsIds[0])
+        collectionView?.register(ImperialCollectionViewCell.self, forCellWithReuseIdentifier: cellsIds[1])
+        collectionView?.isPagingEnabled = true
     }
     
     @objc func switchUnits(_ sender: UISegmentedControl!) {

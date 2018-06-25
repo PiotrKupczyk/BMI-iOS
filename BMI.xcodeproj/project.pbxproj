@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		8387586E20DE21800089E452 /* MetricalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8387586D20DE21800089E452 /* MetricalCollectionViewCell.swift */; };
 		8387587320DE444B0089E452 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8387587220DE444B0089E452 /* Extensions.swift */; };
+		8387587520DE766F0089E452 /* ImperialCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8387587420DE766F0089E452 /* ImperialCollectionViewCell.swift */; };
+		8387587720DE76E80089E452 /* AbstractCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8387587620DE76E80089E452 /* AbstractCollectionViewCell.swift */; };
+		8387588020E17BBB0089E452 /* BasePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8387587F20E17BBB0089E452 /* BasePickerView.swift */; };
+		8387588320E1916F0089E452 /* PickerSelectedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8387588220E1916F0089E452 /* PickerSelectedDelegate.swift */; };
 		83A69B9820DC004900F357B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A69B9720DC004900F357B8 /* AppDelegate.swift */; };
 		83A69B9A20DC004900F357B8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A69B9920DC004900F357B8 /* HomeViewController.swift */; };
 		83A69B9F20DC004900F357B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83A69B9E20DC004900F357B8 /* Assets.xcassets */; };
@@ -19,6 +23,10 @@
 /* Begin PBXFileReference section */
 		8387586D20DE21800089E452 /* MetricalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricalCollectionViewCell.swift; sourceTree = "<group>"; };
 		8387587220DE444B0089E452 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		8387587420DE766F0089E452 /* ImperialCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImperialCollectionViewCell.swift; sourceTree = "<group>"; };
+		8387587620DE76E80089E452 /* AbstractCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractCollectionViewCell.swift; sourceTree = "<group>"; };
+		8387587F20E17BBB0089E452 /* BasePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePickerView.swift; sourceTree = "<group>"; };
+		8387588220E1916F0089E452 /* PickerSelectedDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerSelectedDelegate.swift; sourceTree = "<group>"; };
 		83A69B9420DC004800F357B8 /* BMI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BMI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83A69B9720DC004900F357B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83A69B9920DC004900F357B8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +59,8 @@
 			isa = PBXGroup;
 			children = (
 				8387586D20DE21800089E452 /* MetricalCollectionViewCell.swift */,
+				8387587420DE766F0089E452 /* ImperialCollectionViewCell.swift */,
+				8387587620DE76E80089E452 /* AbstractCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -61,6 +71,22 @@
 				8387587220DE444B0089E452 /* Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8387587820E16DEF0089E452 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8387587F20E17BBB0089E452 /* BasePickerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8387588120E191490089E452 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				8387588220E1916F0089E452 /* PickerSelectedDelegate.swift */,
+			);
+			path = Delegates;
 			sourceTree = "<group>";
 		};
 		83A69B8B20DC004800F357B8 = {
@@ -82,6 +108,8 @@
 		83A69B9620DC004800F357B8 /* BMI */ = {
 			isa = PBXGroup;
 			children = (
+				8387588120E191490089E452 /* Delegates */,
+				8387587820E16DEF0089E452 /* Views */,
 				8387587120DE443C0089E452 /* Extensions */,
 				8387586C20DE21620089E452 /* Cells */,
 				83A69BA920DC008700F357B8 /* BmiCounter */,
@@ -174,9 +202,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				83A69B9A20DC004900F357B8 /* HomeViewController.swift in Sources */,
+				8387587720DE76E80089E452 /* AbstractCollectionViewCell.swift in Sources */,
 				8387586E20DE21800089E452 /* MetricalCollectionViewCell.swift in Sources */,
+				8387588020E17BBB0089E452 /* BasePickerView.swift in Sources */,
+				8387587520DE766F0089E452 /* ImperialCollectionViewCell.swift in Sources */,
 				83A69B9820DC004900F357B8 /* AppDelegate.swift in Sources */,
 				83A69BAE20DC040300F357B8 /* bmiClass.swift in Sources */,
+				8387588320E1916F0089E452 /* PickerSelectedDelegate.swift in Sources */,
 				8387587320DE444B0089E452 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
