@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol PickerSelectedDeletage {
+protocol PickerSelectedDelegate {
     func didSelect(_ sender: BasePickerView, value: String)
 }

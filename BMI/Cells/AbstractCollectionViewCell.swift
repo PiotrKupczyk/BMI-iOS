@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AbstractCollectionViewCell: UICollectionViewCell, UIPickerViewDataSource, UIPickerViewDelegate, PickerSelectedDeletage {
+class AbstractCollectionViewCell: UICollectionViewCell, PickerSelectedDelegate {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -105,7 +105,7 @@ class AbstractCollectionViewCell: UICollectionViewCell, UIPickerViewDataSource, 
         return view
     }()
     
-    // MARK: - To overide methods
+    // MARK: - To override methods
     
     func setupViews() {
         fatalError("Must override")
@@ -118,16 +118,8 @@ class AbstractCollectionViewCell: UICollectionViewCell, UIPickerViewDataSource, 
     func setupOnClick() {
         fatalError("Must override")
     }
-    
+
     func didSelect(_ sender: BasePickerView, value: String) {
-        fatalError("Must override")
-    }
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        fatalError("Must override")
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         fatalError("Must override")
     }
 

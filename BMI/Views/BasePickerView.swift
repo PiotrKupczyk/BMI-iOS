@@ -12,7 +12,7 @@ class BasePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelegate
     
     var data: [Int]?
     var unit: Unit?
-    var collectionDelegate: PickerSelectedDeletage?
+    var collectionDelegate: PickerSelectedDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)

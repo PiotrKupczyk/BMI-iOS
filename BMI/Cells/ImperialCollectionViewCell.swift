@@ -134,6 +134,7 @@ class ImperialCollectionViewCell: AbstractCollectionViewCell {
     }
     
     // MARK: - Layout
+
     override func setupViews() {
         addSubview(container)
         addSubview(resultLabel)
