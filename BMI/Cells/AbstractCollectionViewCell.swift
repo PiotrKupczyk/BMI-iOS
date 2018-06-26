@@ -20,23 +20,11 @@ class AbstractCollectionViewCell: UICollectionViewCell, PickerSelectedDelegate {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    let heightLabel:UILabel = {
-        let label = UILabel()
-        label.text = "Height"
-        label.textAlignment = .left
-        label.backgroundColor = .white
-        return label
-    }()
-    
-    let weightLabel:UILabel = {
-        let label = UILabel()
-        label.text = "Weight"
-        label.textAlignment = .left
-        label.backgroundColor = .white
-        return label
-    }()
-    
+
+    var bmiCounter: Bmi?
+
+    //Mark: - height
+
     let height:UILabel = {
         let label = UILabel()
         //style label
@@ -49,7 +37,17 @@ class AbstractCollectionViewCell: UICollectionViewCell, PickerSelectedDelegate {
         label.textAlignment = .center
         return label
     }()
-    
+
+    let heightLabel:UILabel = {
+        let label = UILabel()
+        label.text = "Height"
+        label.textAlignment = .left
+        label.backgroundColor = .white
+        return label
+    }()
+
+    //MARK: - weight
+
     let weight: UILabel = {
         let label = UILabel()
         label.layer.cornerRadius = 8
@@ -60,6 +58,16 @@ class AbstractCollectionViewCell: UICollectionViewCell, PickerSelectedDelegate {
         label.textAlignment = .center
         return label
     }()
+
+    let weightLabel:UILabel = {
+        let label = UILabel()
+        label.text = "Weight"
+        label.textAlignment = .left
+        label.backgroundColor = .white
+        return label
+    }()
+
+    //MARK: - count and result
     
     let countButton: UIButton = {
         let button = UIButton()
@@ -73,18 +81,20 @@ class AbstractCollectionViewCell: UICollectionViewCell, PickerSelectedDelegate {
         return button
     }()
     
-    let container: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        return view
-    }()
-    
     let resultLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .white
         label.text = "BMI here"
         label.textAlignment = .center
         return label
+    }()
+
+    //MARK: - Containers
+
+    let container: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
     }()
     
     let valuesContainer: UIView = {

@@ -17,7 +17,7 @@
 		83A69B9A20DC004900F357B8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A69B9920DC004900F357B8 /* HomeViewController.swift */; };
 		83A69B9F20DC004900F357B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83A69B9E20DC004900F357B8 /* Assets.xcassets */; };
 		83A69BA220DC004900F357B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83A69BA020DC004900F357B8 /* LaunchScreen.storyboard */; };
-		83A69BAE20DC040300F357B8 /* bmiClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A69BAD20DC040300F357B8 /* bmiClass.swift */; };
+		83A69BAE20DC040300F357B8 /* Bmi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A69BAD20DC040300F357B8 /* Bmi.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +33,7 @@
 		83A69B9E20DC004900F357B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		83A69BA120DC004900F357B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		83A69BA320DC004900F357B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		83A69BAD20DC040300F357B8 /* bmiClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bmiClass.swift; sourceTree = "<group>"; };
+		83A69BAD20DC040300F357B8 /* Bmi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bmi.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,7 +125,7 @@
 		83A69BA920DC008700F357B8 /* BmiCounter */ = {
 			isa = PBXGroup;
 			children = (
-				83A69BAD20DC040300F357B8 /* bmiClass.swift */,
+				83A69BAD20DC040300F357B8 /* Bmi.swift */,
 			);
 			path = BmiCounter;
 			sourceTree = "<group>";
@@ -207,7 +207,7 @@
 				8387588020E17BBB0089E452 /* BasePickerView.swift in Sources */,
 				8387587520DE766F0089E452 /* ImperialCollectionViewCell.swift in Sources */,
 				83A69B9820DC004900F357B8 /* AppDelegate.swift in Sources */,
-				83A69BAE20DC040300F357B8 /* bmiClass.swift in Sources */,
+				83A69BAE20DC040300F357B8 /* Bmi.swift in Sources */,
 				8387588320E1916F0089E452 /* PickerSelectedDelegate.swift in Sources */,
 				8387587320DE444B0089E452 /* Extensions.swift in Sources */,
 			);

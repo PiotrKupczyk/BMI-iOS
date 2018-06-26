@@ -82,7 +82,7 @@ class ImperialCollectionViewCell: AbstractCollectionViewCell {
             inchesPickerView.isHidden = false
         }
     }
-    
+
     @objc func weightOnClick() {
         if poundsPickerView.isHidden {
             poundsPickerView.isHidden = false
@@ -98,12 +98,12 @@ class ImperialCollectionViewCell: AbstractCollectionViewCell {
         feetPickerView.delegate = feetPickerDataModel
         feetPickerDataModel?.collectionDelegate = self
         
-        inchesPickerDataModel = BasePickerView(data: [Int](0...11), unit: UnitLength.inches, pickerTag: Tags.inchesPicker)
+        inchesPickerDataModel = BasePickerView(data: [Int](4...11), unit: UnitLength.inches, pickerTag: Tags.inchesPicker)
         inchesPickerView.dataSource = inchesPickerDataModel
         inchesPickerView.delegate = inchesPickerDataModel
         inchesPickerDataModel?.collectionDelegate = self
         
-        poundsPickerDataModel = BasePickerView(data: [Int](80...280), unit: UnitMass.pounds, pickerTag: Tags.poundsPicker)
+        poundsPickerDataModel = BasePickerView(data: [Int](88...330), unit: UnitMass.pounds, pickerTag: Tags.poundsPicker)
         poundsPickerView.dataSource = poundsPickerDataModel
         poundsPickerView.delegate = poundsPickerDataModel
         poundsPickerDataModel?.collectionDelegate = self

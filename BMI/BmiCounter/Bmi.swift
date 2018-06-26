@@ -6,7 +6,7 @@
 //  Copyright © 2018 Piotr Kupczyk. All rights reserved.
 //
 import Foundation
-class BmiCouter {
+class Bmi {
     
     internal enum BmiErrors: Error {
         case invalidFormat
@@ -39,7 +39,7 @@ class BmiCouter {
         self.kilograms = self.pounds.converted(to: UnitMass.kilograms)
     }
     
-    func cout() -> Double {
+    func count() -> Double {
         //mass in kg / height^2 in meters
         return kilograms.value/(pow(centimeters.converted(to: UnitLength.meters).value, 2))
     }

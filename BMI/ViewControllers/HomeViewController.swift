@@ -19,19 +19,19 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         setUpNavigationBar()
         setupCollectionView()
     }
-    
-    let cellsIds = ["Metric", "Imperial"]
+
+    open let items = ["Metric", "Imperial"]
+
     let segmentedControl = UISegmentedControl(items: ["Metric", "Imperial"])
-    
+    //TODO why can't I put items in to init
+
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return segmentedControl.numberOfSegments
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellsIds[indexPath.row], for: indexPath)
-        
-    
-        segmentedControl.selectedSegmentIndex = indexPath.row
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: items[indexPath.row], for: indexPath)
+
         return cell
     }
     
@@ -67,21 +67,22 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
             flowLayout.minimumLineSpacing = 0
             flowLayout.scrollDirection = .horizontal
         }
-        collectionView?.register(MetricalCollectionViewCell.self, forCellWithReuseIdentifier: cellsIds[0])
-        collectionView?.register(ImperialCollectionViewCell.self, forCellWithReuseIdentifier: cellsIds[1])
+        collectionView?.register(MetricalCollectionViewCell.self, forCellWithReuseIdentifier: items[0])
+        collectionView?.register(ImperialCollectionViewCell.self, forCellWithReuseIdentifier: items[1])
         collectionView?.isPagingEnabled = true
     }
-    
-    @objc func switchUnits(_ sender: UISegmentedControl!) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-//            switchToMetrics()
-            print("0")
-        default:
-//            switchToImperial()
-            print("0")
-        }
+
+    override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let numberOfCurrentScreen = targetContentOffset.pointee.x / view.frame.width
+        segmentedControl.selectedSegmentIndex = Int(numberOfCurrentScreen)
     }
+
+    @objc func switchUnits(_ sender: UISegmentedControl!) {
+        let cellSize = (collectionView?.bounds.width)!
+        collectionView?.contentOffset.x = CGFloat(sender.selectedSegmentIndex)*cellSize
+        //TODO add animation swipe between screens
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
