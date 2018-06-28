@@ -98,7 +98,7 @@ class ImperialCollectionViewCell: AbstractCollectionViewCell {
         feetPickerView.delegate = feetPickerDataModel
         feetPickerDataModel?.collectionDelegate = self
         
-        inchesPickerDataModel = BasePickerView(data: [Int](4...11), unit: UnitLength.inches, pickerTag: Tags.inchesPicker)
+        inchesPickerDataModel = BasePickerView(data: [Int](0...11), unit: UnitLength.inches, pickerTag: Tags.inchesPicker)
         inchesPickerView.dataSource = inchesPickerDataModel
         inchesPickerView.delegate = inchesPickerDataModel
         inchesPickerDataModel?.collectionDelegate = self
@@ -115,17 +115,14 @@ class ImperialCollectionViewCell: AbstractCollectionViewCell {
         switch sender.tag {
         case Tags.feetPicker: do {
             height.text = value
-            feetPickerView.isHidden = true
             break
         }
         case Tags.inchesPicker: do {
             inches.text = value
-            inchesPickerView.isHidden = true
             break
             }
         case Tags.poundsPicker: do {
             weight.text = value
-            poundsPickerView.isHidden = true
             break
             }
         default:

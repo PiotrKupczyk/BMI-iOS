@@ -83,6 +83,8 @@ class MetricalCollectionViewCell: AbstractCollectionViewCell {
         let weightTap = UITapGestureRecognizer(target: self, action: #selector(weightOnClick))
         weight.isUserInteractionEnabled = true
         weight.addGestureRecognizer(weightTap)
+
+        countButton.addTarget(self, action: #selector(countBmi), for: .touchUpInside)
     }
 
     @objc func heightOnClick() {
@@ -95,6 +97,20 @@ class MetricalCollectionViewCell: AbstractCollectionViewCell {
         if weightPickerView.isHidden {
             weightPickerView.isHidden = false
         }
+    }
+
+    @objc func countBmi() {
+        guard let splitedHeight = height.text?.components(separatedBy: " ")[0] else {
+            print("There is no height")
+            return}
+        guard let splitedWeight = weight.text?.components(separatedBy: " ") else {
+            print("There is no weight")
+            return}
+
+        let bmiCounter = Bmi(centimeters: Double(splitedHeight)!, kilograms: Double(splitedWeight[0])!)
+        let bmi = bmiCounter.count()
+
+        showResult(result: bmi)
     }
     
     // MARK: - Set up pickers
@@ -134,6 +150,12 @@ class MetricalCollectionViewCell: AbstractCollectionViewCell {
         default:
             break
         }
+    }
+
+    //MARK: - show result
+
+    private func showResult(result: Double) {
+        resultLabel.text = "\(result)"
     }
 
     

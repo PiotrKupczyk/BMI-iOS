@@ -50,7 +50,7 @@ extension UIColor {
     struct AppColors {
         static let primaryColor = UIColor(netHex: 0x00cd00)
         static let darkPrimaryColor = UIColor(netHex: 0x009a00)
-        static let backgroundColor = UIColor(netHex: 0xD1D5D8)
+        static let backgroundColor = UIColor.white
     }
     
     struct FlatColor {
@@ -100,5 +100,12 @@ extension UIColor {
             static let Iron = UIColor(netHex: 0xD1D5D8)
             static let IronGray = UIColor(netHex: 0x75706B)
         }
+    }
+}
+
+extension Double {
+    func roundTo(places:Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
     }
 }

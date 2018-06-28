@@ -41,7 +41,8 @@ class Bmi {
     
     func count() -> Double {
         //mass in kg / height^2 in meters
-        return kilograms.value/(pow(centimeters.converted(to: UnitLength.meters).value, 2))
+        let bmi = kilograms.value/(pow(centimeters.converted(to: UnitLength.meters).value, 2))
+        return bmi.roundTo(places: 2)
     }
 
     //------------------------------Values getters and setters---------------------
