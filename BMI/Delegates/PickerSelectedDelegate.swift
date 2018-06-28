@@ -9,5 +9,5 @@
 import Foundation
 
 protocol PickerSelectedDelegate {
-    func didSelect(_ sender: BasePickerView, value: String)
+    func didSelect(_ sender: BasePickerData, value: String)
 }

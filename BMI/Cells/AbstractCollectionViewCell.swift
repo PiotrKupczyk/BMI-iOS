@@ -12,9 +12,9 @@ class AbstractCollectionViewCell: UICollectionViewCell, PickerSelectedDelegate {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupViews()
         setupPickers()
         setupOnClick()
+        setupViews()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -84,7 +84,6 @@ class AbstractCollectionViewCell: UICollectionViewCell, PickerSelectedDelegate {
     let resultLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = .white
-        label.text = "BMI here"
         label.textAlignment = .center
         return label
     }()
@@ -129,7 +128,7 @@ class AbstractCollectionViewCell: UICollectionViewCell, PickerSelectedDelegate {
         fatalError("Must override")
     }
 
-    func didSelect(_ sender: BasePickerView, value: String) {
+    func didSelect(_ sender: BasePickerData, value: String) {
         fatalError("Must override")
     }
 

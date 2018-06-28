@@ -33,10 +33,11 @@ class Bmi {
     init(feet: Double, inches: Double, pounds: Double) {
         self.feet = Measurement(value: feet, unit: UnitLength.feet)
         self.inches = Measurement(value: inches, unit: UnitLength.inches)
-        self.pounds = Measurement(value: feet, unit: UnitMass.pounds)
+        self.pounds = Measurement(value: pounds, unit: UnitMass.pounds)
         self.centimeters = self.feet.converted(to: UnitLength.centimeters)
                             + self.inches.converted(to: UnitLength.centimeters)
         self.kilograms = self.pounds.converted(to: UnitMass.kilograms)
+
     }
     
     func count() -> Double {

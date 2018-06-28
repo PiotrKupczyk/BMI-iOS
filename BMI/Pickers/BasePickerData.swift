@@ -1,5 +1,5 @@
 //
-//  BasePickerView.swift
+//  BasePickerData.swift
 //  BMI
 //
 //  Created by Piotr Kupczyk on 25.06.2018.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BasePickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelegate {
+class BasePickerData: UIPickerView, UIPickerViewDataSource, UIPickerViewDelegate {
     
     var data: [Int]?
     var unit: Unit?

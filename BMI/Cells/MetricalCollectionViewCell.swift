@@ -103,11 +103,11 @@ class MetricalCollectionViewCell: AbstractCollectionViewCell {
         guard let splitedHeight = height.text?.components(separatedBy: " ")[0] else {
             print("There is no height")
             return}
-        guard let splitedWeight = weight.text?.components(separatedBy: " ") else {
+        guard let splitedWeight = weight.text?.components(separatedBy: " ")[0] else {
             print("There is no weight")
             return}
 
-        let bmiCounter = Bmi(centimeters: Double(splitedHeight)!, kilograms: Double(splitedWeight[0])!)
+        let bmiCounter = Bmi(centimeters: Double(splitedHeight)!, kilograms: Double(splitedWeight)!)
         let bmi = bmiCounter.count()
 
         showResult(result: bmi)
@@ -115,17 +115,17 @@ class MetricalCollectionViewCell: AbstractCollectionViewCell {
     
     // MARK: - Set up pickers
 
-    var heightPickerDataModel: BasePickerView?
-    var weightPickerDataModel: BasePickerView?
+    var heightPickerDataModel: BasePickerData?
+    var weightPickerDataModel: BasePickerData?
 
     override func setupPickers() {
-        heightPickerDataModel = BasePickerView(data: [Int](120...220), unit: UnitLength.centimeters
+        heightPickerDataModel = BasePickerData(data: [Int](120...220), unit: UnitLength.centimeters
                 , pickerTag: Tags.heightPicker)
         heightPickerView.dataSource = heightPickerDataModel
         heightPickerView.delegate = heightPickerDataModel
         heightPickerDataModel?.collectionDelegate = self
 
-        weightPickerDataModel = BasePickerView(data: [Int](30...200), unit: UnitMass.kilograms
+        weightPickerDataModel = BasePickerData(data: [Int](30...200), unit: UnitMass.kilograms
                 , pickerTag: Tags.massPicker)
         weightPickerView.dataSource = weightPickerDataModel
         weightPickerView.delegate = weightPickerDataModel
@@ -135,7 +135,7 @@ class MetricalCollectionViewCell: AbstractCollectionViewCell {
 
     //MARK: - picker view changed
 
-    override func didSelect(_ sender: BasePickerView, value: String) {
+    override func didSelect(_ sender: BasePickerData, value: String) {
         switch sender.tag {
         case Tags.heightPicker: do {
             height.text = value

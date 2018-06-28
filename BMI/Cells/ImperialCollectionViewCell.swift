@@ -26,35 +26,13 @@ class ImperialCollectionViewCell: AbstractCollectionViewCell {
         static let inchesPicker = 1
         static let poundsPicker = 2
     }
+
     
     // MARK: - Pickers
     
-    let feetPickerView: UIPickerView = {
-        let view = UIPickerView()
-        view.tag = Tags.feetPicker
-        view.isHidden = true
-        return view
-    }()
-    
-    var inchesPickerView: UIPickerView = {
-        let view = UIPickerView()
-        view.tag = Tags.inchesPicker
-        view.isHidden = true
-        return view
-    }()
-    
-    let poundsPickerView: UIPickerView = {
-        let view = UIPickerView()
-        view.tag = Tags.poundsPicker
-        view.isHidden = true
-        return view
-    }()
-    
-    // MARK: - Pickers delegates and data sources
-    
-    var feetPickerDataModel: BasePickerView?
-    var inchesPickerDataModel: BasePickerView?
-    var poundsPickerDataModel: BasePickerView?
+    var feetPicker: BasePicker?
+    var inchesPicker: BasePicker?
+    var poundsPicker: BasePicker?
     
     // MARK: - On Click methods
     override func setupOnClick() {
@@ -69,49 +47,63 @@ class ImperialCollectionViewCell: AbstractCollectionViewCell {
         let weightTap = UITapGestureRecognizer(target: self, action: #selector(weightOnClick))
         weight.isUserInteractionEnabled = true
         weight.addGestureRecognizer(weightTap)
+
+        countButton.addTarget(self, action: #selector(countBmi), for: .touchUpInside)
     }
     
     @objc func heightOnClick() {
-        if feetPickerView.isHidden {
-            feetPickerView.isHidden = false
+        if (feetPicker?.isHidden)! {
+            feetPicker?.isHidden = false
         }
     }
     
     @objc func inchesOnClick() {
-        if inchesPickerView.isHidden {
-            inchesPickerView.isHidden = false
+        if (inchesPicker?.isHidden)! {
+            inchesPicker?.isHidden = false
         }
     }
 
     @objc func weightOnClick() {
-        if poundsPickerView.isHidden {
-            poundsPickerView.isHidden = false
+        if (poundsPicker?.isHidden)! {
+            poundsPicker?.isHidden = false
         }
     }
-    
-    
+
+    @objc func countBmi() {
+        guard let splitedFeet = height.text?.components(separatedBy: " ")[0] else {
+            print("There is no height")
+            return}
+
+        guard let splitedInch = inches.text?.components(separatedBy: " ")[0] else {
+            print("There is no weight")
+            return}
+
+        guard let splitedWeight = weight.text?.components(separatedBy: " ")[0] else {
+            print("There is no weight")
+            return}
+
+        let bmiCounter = Bmi(feet: Double(splitedFeet)!, inches: Double(splitedInch)!, pounds: Double(splitedWeight)!)
+        let bmi = bmiCounter.count()
+
+        resultLabel.text = "\(bmi)"
+    }
+
     // MARK: - Pickers methods
     
     override func setupPickers() {
-        feetPickerDataModel = BasePickerView(data: [Int](1...7), unit: UnitLength.feet, pickerTag: Tags.feetPicker)
-        feetPickerView.dataSource = feetPickerDataModel
-        feetPickerView.delegate = feetPickerDataModel
-        feetPickerDataModel?.collectionDelegate = self
+        feetPicker = BasePicker(data: [Int](1...7), unit: UnitLength.feet, pickerTag: Tags.feetPicker)
+        feetPicker?.pickerData?.collectionDelegate = self
         
-        inchesPickerDataModel = BasePickerView(data: [Int](0...11), unit: UnitLength.inches, pickerTag: Tags.inchesPicker)
-        inchesPickerView.dataSource = inchesPickerDataModel
-        inchesPickerView.delegate = inchesPickerDataModel
-        inchesPickerDataModel?.collectionDelegate = self
+        inchesPicker = BasePicker(data: [Int](0...11), unit: UnitLength.inches, pickerTag: Tags.inchesPicker)
+        inchesPicker?.pickerData?.collectionDelegate = self
         
-        poundsPickerDataModel = BasePickerView(data: [Int](88...330), unit: UnitMass.pounds, pickerTag: Tags.poundsPicker)
-        poundsPickerView.dataSource = poundsPickerDataModel
-        poundsPickerView.delegate = poundsPickerDataModel
-        poundsPickerDataModel?.collectionDelegate = self
+        poundsPicker = BasePicker(data: [Int](88...330), unit: UnitMass.pounds, pickerTag: Tags.poundsPicker)
+        poundsPicker?.pickerData?.collectionDelegate = self
     }
     
     // MARK: - PickerView changed
     
-    override func didSelect(_ sender: BasePickerView, value: String) {
+    override func didSelect(_ sender: BasePickerData, value: String) {
         switch sender.tag {
         case Tags.feetPicker: do {
             height.text = value
@@ -135,9 +127,9 @@ class ImperialCollectionViewCell: AbstractCollectionViewCell {
     override func setupViews() {
         addSubview(container)
         addSubview(resultLabel)
-        addSubview(feetPickerView)
-        addSubview(inchesPickerView)
-        addSubview(poundsPickerView)
+        addSubview(feetPicker!)
+        addSubview(inchesPicker!)
+        addSubview(poundsPicker!)
         
         container.addSubview(valuesContainer)
         
@@ -181,10 +173,10 @@ class ImperialCollectionViewCell: AbstractCollectionViewCell {
         countButton.anchor(top: weightContainer.bottomAnchor, leading: weightContainer.leadingAnchor, bottom: valuesContainer.bottomAnchor, trailing: weightContainer.trailingAnchor, padding: UIEdgeInsets(top: 60, left: 30, bottom: -60, right: -30))
         
         //set up pickers
-        feetPickerView.anchor(top: container.bottomAnchor, leading: self.safeAreaLayoutGuide.leadingAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, trailing: self.safeAreaLayoutGuide.trailingAnchor)
+        feetPicker?.anchor(top: container.bottomAnchor, leading: self.safeAreaLayoutGuide.leadingAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, trailing: self.safeAreaLayoutGuide.trailingAnchor)
         
-        inchesPickerView.anchor(top: container.bottomAnchor, leading: self.safeAreaLayoutGuide.leadingAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, trailing: self.safeAreaLayoutGuide.trailingAnchor)
+        inchesPicker?.anchor(top: container.bottomAnchor, leading: self.safeAreaLayoutGuide.leadingAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, trailing: self.safeAreaLayoutGuide.trailingAnchor)
         
-        poundsPickerView.anchor(top: container.bottomAnchor, leading: self.safeAreaLayoutGuide.leadingAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, trailing: self.safeAreaLayoutGuide.trailingAnchor)
+        poundsPicker?.anchor(top: container.bottomAnchor, leading: self.safeAreaLayoutGuide.leadingAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, trailing: self.safeAreaLayoutGuide.trailingAnchor)
     }
 }

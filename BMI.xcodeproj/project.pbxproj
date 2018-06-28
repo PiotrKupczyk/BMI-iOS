@@ -18,7 +18,7 @@
 		83A69BA220DC004900F357B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83A69BA020DC004900F357B8 /* LaunchScreen.storyboard */; };
 		83A69BAE20DC040300F357B8 /* Bmi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A69BAD20DC040300F357B8 /* Bmi.swift */; };
 		B6E0E60D8951F100AE4657B7 /* BasePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E0EE47E88EE04FBC473FCC /* BasePicker.swift */; };
-		B6E0E8A7F62F3AB03F93ACAC /* BasePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E0EA1E6BF78CE969E0F135 /* BasePickerView.swift */; };
+		B6E0E8A7F62F3AB03F93ACAC /* BasePickerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E0EA1E6BF78CE969E0F135 /* BasePickerData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,7 +34,7 @@
 		83A69BA120DC004900F357B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		83A69BA320DC004900F357B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		83A69BAD20DC040300F357B8 /* Bmi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bmi.swift; sourceTree = "<group>"; };
-		B6E0EA1E6BF78CE969E0F135 /* BasePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePickerView.swift; sourceTree = "<group>"; };
+		B6E0EA1E6BF78CE969E0F135 /* BasePickerData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePickerData.swift; sourceTree = "<group>"; };
 		B6E0EE47E88EE04FBC473FCC /* BasePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -128,7 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				B6E0EE47E88EE04FBC473FCC /* BasePicker.swift */,
-				B6E0EA1E6BF78CE969E0F135 /* BasePickerView.swift */,
+				B6E0EA1E6BF78CE969E0F135 /* BasePickerData.swift */,
 			);
 			path = Pickers;
 			sourceTree = "<group>";
@@ -213,7 +213,7 @@
 				8387588320E1916F0089E452 /* PickerSelectedDelegate.swift in Sources */,
 				8387587320DE444B0089E452 /* Extensions.swift in Sources */,
 				B6E0E60D8951F100AE4657B7 /* BasePicker.swift in Sources */,
-				B6E0E8A7F62F3AB03F93ACAC /* BasePickerView.swift in Sources */,
+				B6E0E8A7F62F3AB03F93ACAC /* BasePickerData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
