@@ -15,25 +15,11 @@ class MetricalCollectionViewCell: AbstractCollectionViewCell {
         static let massPicker = 1
     }
 
-    private let heightPickerView: UIPickerView = {
-        let view = UIPickerView()
-        view.tag = Tags.heightPicker
-        view.isHidden = true
-        return view
-    }()
-
-    private let weightPickerView: UIPickerView = {
-        let view = UIPickerView()
-        view.tag = Tags.massPicker
-        view.isHidden = true
-        return view
-    }()
-
     override func setupViews() {
         addSubview(container)
         addSubview(resultLabel)
-        addSubview(heightPickerView)
-        addSubview(weightPickerView)
+        addSubview(heightPicker!)
+        addSubview(weightPicker!)
         
         container.addSubview(valuesContainer)
         
@@ -47,7 +33,7 @@ class MetricalCollectionViewCell: AbstractCollectionViewCell {
         weightContainer.addSubview(weight)
         weightContainer.addSubview(weightLabel)
         
-        let defaulHeight = CGFloat(45)
+        let defaultHeight = CGFloat(45)
         let labelWidth = CGFloat(60)
         
         container.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .zero, size: CGSize(width: 0, height: 2*self.frame.height/3))
@@ -56,12 +42,12 @@ class MetricalCollectionViewCell: AbstractCollectionViewCell {
         
         valuesContainer.anchor(top: container.topAnchor, leading: container.leadingAnchor, bottom: container.bottomAnchor, trailing: container.trailingAnchor, padding: UIEdgeInsets(top: 60, left: 60, bottom: -60, right: -60))
         
-        heightContainer.anchor(top: valuesContainer.topAnchor, leading: valuesContainer.leadingAnchor, bottom: nil, trailing: valuesContainer.trailingAnchor, padding: UIEdgeInsets(top: 4, left: 4, bottom: 0, right: -4), size: CGSize(width: 0, height: defaulHeight))
+        heightContainer.anchor(top: valuesContainer.topAnchor, leading: valuesContainer.leadingAnchor, bottom: nil, trailing: valuesContainer.trailingAnchor, padding: UIEdgeInsets(top: 4, left: 4, bottom: 0, right: -4), size: CGSize(width: 0, height: defaultHeight))
         
-        weightContainer.anchor(top: heightContainer.bottomAnchor, leading: heightContainer.leadingAnchor, bottom: nil, trailing: heightContainer.trailingAnchor, padding: UIEdgeInsets(top: 32, left: 0, bottom: 0, right: 0), size: CGSize(width: 0, height: defaulHeight))
+        weightContainer.anchor(top: heightContainer.bottomAnchor, leading: heightContainer.leadingAnchor, bottom: nil, trailing: heightContainer.trailingAnchor, padding: UIEdgeInsets(top: 32, left: 0, bottom: 0, right: 0), size: CGSize(width: 0, height: defaultHeight))
         
         //set up height container
-        heightLabel.anchor(top: heightContainer.topAnchor, leading: heightContainer.leadingAnchor, bottom: heightContainer.bottomAnchor, trailing: nil, padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), size: CGSize(width: labelWidth, height: defaulHeight))
+        heightLabel.anchor(top: heightContainer.topAnchor, leading: heightContainer.leadingAnchor, bottom: heightContainer.bottomAnchor, trailing: nil, padding: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), size: CGSize(width: labelWidth, height: defaultHeight))
         
         height.anchor(top: heightContainer.topAnchor, leading: heightLabel.trailingAnchor, bottom: heightContainer.bottomAnchor, trailing: heightContainer.trailingAnchor, padding: UIEdgeInsets(top: 0, left: 45, bottom: 0, right: -8))
         
@@ -72,6 +58,12 @@ class MetricalCollectionViewCell: AbstractCollectionViewCell {
         weight.anchor(top: weightContainer.topAnchor, leading: weightLabel.trailingAnchor, bottom: weightContainer.bottomAnchor, trailing: weightContainer.trailingAnchor, padding: UIEdgeInsets(top: 0, left: 45, bottom: 0, right: -8))
         
         countButton.anchor(top: weightContainer.bottomAnchor, leading: weightContainer.leadingAnchor, bottom: valuesContainer.bottomAnchor, trailing: weightContainer.trailingAnchor, padding: UIEdgeInsets(top: 60, left: 30, bottom: -60, right: -30))
+
+        //pickers
+
+        heightPicker?.anchor(top: container.bottomAnchor, leading: self.safeAreaLayoutGuide.leadingAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, trailing: self.safeAreaLayoutGuide.trailingAnchor)
+
+        weightPicker?.anchor(top: container.bottomAnchor, leading: self.safeAreaLayoutGuide.leadingAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, trailing: self.safeAreaLayoutGuide.trailingAnchor)
     }
 
     // MARK: - On Click methods
@@ -88,14 +80,14 @@ class MetricalCollectionViewCell: AbstractCollectionViewCell {
     }
 
     @objc func heightOnClick() {
-        if heightPickerView.isHidden {
-            heightPickerView.isHidden = false
+        if heightPicker!.isHidden {
+            heightPicker?.isHidden = false
         }
     }
 
     @objc func weightOnClick() {
-        if weightPickerView.isHidden {
-            weightPickerView.isHidden = false
+        if weightPicker!.isHidden {
+            weightPicker?.isHidden = false
         }
     }
 
@@ -115,21 +107,17 @@ class MetricalCollectionViewCell: AbstractCollectionViewCell {
     
     // MARK: - Set up pickers
 
-    var heightPickerDataModel: BasePickerData?
-    var weightPickerDataModel: BasePickerData?
+    var heightPicker: BasePicker?
+    var weightPicker: BasePicker?
 
     override func setupPickers() {
-        heightPickerDataModel = BasePickerData(data: [Int](120...220), unit: UnitLength.centimeters
+        heightPicker = BasePicker(data: [Int](120...220), unit: UnitLength.centimeters
                 , pickerTag: Tags.heightPicker)
-        heightPickerView.dataSource = heightPickerDataModel
-        heightPickerView.delegate = heightPickerDataModel
-        heightPickerDataModel?.collectionDelegate = self
+        heightPicker?.pickerData?.collectionDelegate = self
 
-        weightPickerDataModel = BasePickerData(data: [Int](30...200), unit: UnitMass.kilograms
+        weightPicker = BasePicker(data: [Int](30...200), unit: UnitMass.kilograms
                 , pickerTag: Tags.massPicker)
-        weightPickerView.dataSource = weightPickerDataModel
-        weightPickerView.delegate = weightPickerDataModel
-        weightPickerDataModel?.collectionDelegate = self
+        weightPicker?.pickerData?.collectionDelegate = self
 
     }
 
@@ -139,12 +127,10 @@ class MetricalCollectionViewCell: AbstractCollectionViewCell {
         switch sender.tag {
         case Tags.heightPicker: do {
             height.text = value
-            heightPickerView.isHidden = true
             break
         }
         case Tags.massPicker: do {
             weight.text = value
-            weightPickerView.isHidden = true
             break
         }
         default:
