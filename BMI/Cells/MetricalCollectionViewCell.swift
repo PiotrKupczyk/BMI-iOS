@@ -81,13 +81,13 @@ class MetricalCollectionViewCell: AbstractCollectionViewCell {
 
     @objc func heightOnClick() {
         if heightPicker!.isHidden {
-            heightPicker?.isHidden = false
+            heightPicker?.show()
         }
     }
 
     @objc func weightOnClick() {
         if weightPicker!.isHidden {
-            weightPicker?.isHidden = false
+            weightPicker?.show()
         }
     }
 

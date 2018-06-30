@@ -53,19 +53,19 @@ class ImperialCollectionViewCell: AbstractCollectionViewCell {
     
     @objc func heightOnClick() {
         if (feetPicker?.isHidden)! {
-            feetPicker?.isHidden = false
+            feetPicker?.show()
         }
     }
     
     @objc func inchesOnClick() {
         if (inchesPicker?.isHidden)! {
-            inchesPicker?.isHidden = false
+            inchesPicker?.show()
         }
     }
 
     @objc func weightOnClick() {
         if (poundsPicker?.isHidden)! {
-            poundsPicker?.isHidden = false
+            poundsPicker?.show()
         }
     }
 

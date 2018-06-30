@@ -36,6 +36,12 @@ class BasePicker: UIView {
         return stackView
     }()
 
+    let separator: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.gray
+        return view
+    }()
+
     let pickerView: UIPickerView = UIPickerView()
 
     var pickerData: BasePickerData?
@@ -69,15 +75,29 @@ class BasePicker: UIView {
     }
 
     func setupViews() {
+
         self.addSubview(buttonsContainerView)
         self.addSubview(pickerView)
+        self.addSubview(separator)
 
         buttonsContainerView.addArrangedSubview(cancelButton)
         buttonsContainerView.addArrangedSubview(doneButton)
 
         buttonsContainerView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor,
                  padding: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: -16), size: CGSize(width: 0, height: 30))
-        pickerView.anchor(top: buttonsContainerView.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
+        separator.anchor(top: buttonsContainerView.bottomAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor,
+                padding: UIEdgeInsets(top: 4, left: 0, bottom: 0, right: 0), size: CGSize(width: 0, height: 1))
+        pickerView.anchor(top: separator.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
     }
+
+    func show() {
+        self.transform = CGAffineTransform(translationX: 0, y: self.bounds.height)
+        self.isHidden = false
+
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
+            self.transform = self.transform.translatedBy(x: 0, y: -self.bounds.height)
+        }, completion: nil)
+    }
+
 
 }
