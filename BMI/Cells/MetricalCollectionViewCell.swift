@@ -16,10 +16,9 @@ class MetricalCollectionViewCell: AbstractCollectionViewCell {
     }
 
     override func setupViews() {
+        self.backgroundColor = .white
         addSubview(container)
-        addSubview(resultLabel)
-        addSubview(heightPicker!)
-        addSubview(weightPicker!)
+        addSubview(resultView)
         
         container.addSubview(valuesContainer)
         
@@ -36,9 +35,9 @@ class MetricalCollectionViewCell: AbstractCollectionViewCell {
         let defaultHeight = CGFloat(45)
         let labelWidth = CGFloat(60)
         
-        container.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .zero, size: CGSize(width: 0, height: 2*self.frame.height/3))
-        
-        resultLabel.anchor(top: container.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
+        container.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .zero, size: CGSize(width: 0, height: 2*self.bounds.height/3))
+
+        resultView.anchor(top: container.bottomAnchor, leading: self.safeAreaLayoutGuide.leadingAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, trailing: self.safeAreaLayoutGuide.trailingAnchor)
         
         valuesContainer.anchor(top: container.topAnchor, leading: container.leadingAnchor, bottom: container.bottomAnchor, trailing: container.trailingAnchor, padding: UIEdgeInsets(top: 60, left: 60, bottom: -60, right: -60))
         
@@ -59,10 +58,18 @@ class MetricalCollectionViewCell: AbstractCollectionViewCell {
         
         countButton.anchor(top: weightContainer.bottomAnchor, leading: weightContainer.leadingAnchor, bottom: valuesContainer.bottomAnchor, trailing: weightContainer.trailingAnchor, padding: UIEdgeInsets(top: 60, left: 30, bottom: -60, right: -30))
 
-        //pickers
+        setupPickersLayout()
+
+//        setupResultContainerLayout()
+
+//        UIView.animate(withDuration: 0.5, animations: )
+    }
+
+    private func setupPickersLayout() {
+        addSubview(heightPicker!)
+        addSubview(weightPicker!)
 
         heightPicker?.anchor(top: container.bottomAnchor, leading: self.safeAreaLayoutGuide.leadingAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, trailing: self.safeAreaLayoutGuide.trailingAnchor)
-
         weightPicker?.anchor(top: container.bottomAnchor, leading: self.safeAreaLayoutGuide.leadingAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, trailing: self.safeAreaLayoutGuide.trailingAnchor)
     }
 
@@ -102,7 +109,7 @@ class MetricalCollectionViewCell: AbstractCollectionViewCell {
         let bmiCounter = Bmi(centimeters: Double(splitedHeight)!, kilograms: Double(splitedWeight)!)
         let bmi = bmiCounter.count()
 
-        showResult(result: bmi)
+        showResult(result: bmi.value)
     }
     
     // MARK: - Set up pickers
@@ -141,7 +148,7 @@ class MetricalCollectionViewCell: AbstractCollectionViewCell {
     //MARK: - show result
 
     private func showResult(result: Double) {
-        resultLabel.text = "\(result)"
+        resultView.resultLabel.text = "\(result)"
     }
 
     

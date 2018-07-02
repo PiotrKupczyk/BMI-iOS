@@ -85,7 +85,7 @@ class ImperialCollectionViewCell: AbstractCollectionViewCell {
         let bmiCounter = Bmi(feet: Double(splitedFeet)!, inches: Double(splitedInch)!, pounds: Double(splitedWeight)!)
         let bmi = bmiCounter.count()
 
-        resultLabel.text = "\(bmi)"
+        resultLabel.text = "\(bmi.value)"
     }
 
     // MARK: - Pickers methods
@@ -173,10 +173,14 @@ class ImperialCollectionViewCell: AbstractCollectionViewCell {
         countButton.anchor(top: weightContainer.bottomAnchor, leading: weightContainer.leadingAnchor, bottom: valuesContainer.bottomAnchor, trailing: weightContainer.trailingAnchor, padding: UIEdgeInsets(top: 60, left: 30, bottom: -60, right: -30))
         
         //set up pickers
+        pickersLayout()
+    }
+
+    private func pickersLayout() {
         feetPicker?.anchor(top: container.bottomAnchor, leading: self.safeAreaLayoutGuide.leadingAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, trailing: self.safeAreaLayoutGuide.trailingAnchor)
-        
+
         inchesPicker?.anchor(top: container.bottomAnchor, leading: self.safeAreaLayoutGuide.leadingAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, trailing: self.safeAreaLayoutGuide.trailingAnchor)
-        
+
         poundsPicker?.anchor(top: container.bottomAnchor, leading: self.safeAreaLayoutGuide.leadingAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, trailing: self.safeAreaLayoutGuide.trailingAnchor)
     }
 }

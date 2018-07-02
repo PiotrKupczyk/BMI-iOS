@@ -55,7 +55,7 @@ class BasePicker: UIView {
     }
 
     init(data: [Int], unit: Unit, pickerTag: Int) {
-        super.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        super.init(frame: .zero)
 
         self.backgroundColor = UIColor.AppColors.backgroundColor
         self.isHidden = true

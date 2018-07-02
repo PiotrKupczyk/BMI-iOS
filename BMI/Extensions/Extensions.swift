@@ -33,6 +33,19 @@ extension UIView {
             heightAnchor.constraint(equalToConstant: size.height).isActive = true
         }
     }
+
+    func setGradientBackground(colors: [CGColor]) {
+        //It's safer if it's loaded async because in this way we're sure that gradient is loaded after viewDidLoad()
+        DispatchQueue.main.async {
+            let gradientLayer = CAGradientLayer()
+            gradientLayer.frame = self.bounds
+            gradientLayer.colors = colors
+            gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
+            gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
+
+            self.layer.insertSublayer(gradientLayer, at: 0)
+        }
+    }
 }
 
 extension UIColor {
@@ -51,6 +64,13 @@ extension UIColor {
         static let primaryColor = UIColor(netHex: 0x00cd00)
         static let darkPrimaryColor = UIColor(netHex: 0x009a00)
         static let backgroundColor = UIColor.white
+    }
+
+    struct BMI {
+        static let underweight = UIColor(netHex: 0xebecf2) // gray
+        static let norm = UIColor.green
+        static let overweight = UIColor.yellow
+        static let obese = UIColor.red
     }
     
     struct FlatColor {

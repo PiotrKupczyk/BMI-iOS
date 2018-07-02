@@ -113,6 +113,52 @@ class AbstractCollectionViewCell: UICollectionViewCell, PickerSelectedDelegate {
         view.backgroundColor = .white
         return view
     }()
+
+    let resultView = ResultView()
+
+//    let resultIndexContainer: UIStackView = {
+//        let stackView = UIStackView()
+//        stackView.backgroundColor = .white
+//        stackView.distribution = .fillEqually
+//        stackView.isLayoutMarginsRelativeArrangement = true
+//        stackView.layoutMargins = UIEdgeInsets(top: 4, left: 4, bottom: 0, right: 4)
+//        stackView.spacing = 8
+//        return stackView
+//    }()
+//
+//    //MARK: - result index labels
+//
+//    let underweightLabel: UILabel = {
+//        let label = UILabel()
+//        label.backgroundColor = UIColor.BMI.underweight
+//        label.text = "Underweight"
+//        label.textAlignment = .center
+//        return label
+//    }()
+//
+//    let normLabel: UILabel = {
+//        let label = UILabel()
+//        label.backgroundColor = UIColor.BMI.norm
+//        label.text = "Norm"
+//        label.textAlignment = .center
+//        return label
+//    }()
+//
+//    let overweightLabel: UILabel = {
+//        let label = UILabel()
+//        label.backgroundColor = UIColor.BMI.overweight
+//        label.text = "Overweight"
+//        label.textAlignment = .center
+//        return label
+//    }()
+//
+//    let obeseLabel: UILabel = {
+//        let label = UILabel()
+//        label.backgroundColor = UIColor.BMI.obese
+//        label.text = "Obese"
+//        label.textAlignment = .center
+//        return label
+//    }()
     
     // MARK: - To override methods
     

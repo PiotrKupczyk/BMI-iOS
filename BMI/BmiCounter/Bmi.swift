@@ -7,18 +7,34 @@
 //
 import Foundation
 class Bmi {
-    
-    internal enum BmiErrors: Error {
-        case invalidFormat
-    }
-    
-    private func checkValue(value: Double, range: ClosedRange<Double>) throws -> Double {
-        if range.contains(value) {
-            return value
-        } else {
-            throw BmiErrors.invalidFormat
+
+    enum BmiIndex {
+        case underweight
+        case norm
+        case overweight
+        case obese
+        case unknown
+
+        static let allCases = [underweight, norm, overweight, obese, unknown]
+        var range: Range<Double> {
+            get {
+                switch self {
+                case .underweight:
+                    return 0.0..<18.5
+                case .norm:
+                    return 18.5..<25.0
+                case .overweight:
+                    return 25.0..<30
+                case .obese:
+                    return 30..<Double.infinity
+                default:
+                    return 0.0..<0.1
+                }
+            }
         }
     }
+
+    typealias BmiResult = (value: Double, index: BmiIndex)
     
     init(centimeters: Double, kilograms: Double) {
         self.centimeters = Measurement(value: centimeters, unit: UnitLength.centimeters)
@@ -40,10 +56,20 @@ class Bmi {
 
     }
     
-    func count() -> Double {
+    func count() -> BmiResult {
         //mass in kg / height^2 in meters
         let bmi = kilograms.value/(pow(centimeters.converted(to: UnitLength.meters).value, 2))
-        return bmi.roundTo(places: 2)
+        let bmiIndex = indexFromValue(bmi: bmi)
+        return BmiResult(value: bmi.roundTo(places: 2), index: bmiIndex)
+    }
+
+    private func indexFromValue(bmi: Double) -> BmiIndex {
+        for bmiIndex in BmiIndex.allCases {
+            if bmiIndex.range.contains(bmi) {
+                return bmiIndex
+            }
+        }
+        return BmiIndex.unknown
     }
 
     //------------------------------Values getters and setters---------------------
@@ -56,4 +82,5 @@ class Bmi {
     var feet: Measurement<Dimension>
     var inches: Measurement<Dimension>
     var pounds: Measurement<Dimension>
+
 }

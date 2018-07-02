@@ -32,6 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.addSubview(statusBarView)
         statusBarView.anchor(top: window?.topAnchor, leading: window?.leadingAnchor, bottom: nil, trailing: window?.trailingAnchor,
                 size: CGSize(width: 0, height: 20))
+        window?.backgroundColor = .red
 
         return true
     }
