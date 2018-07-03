@@ -14,6 +14,7 @@ class ResultView: UIStackView {
         self.axis = .vertical
 
         self.setupLayout()
+        arrowView.backgroundColor = .white
     }
 
     required init(coder: NSCoder) {
@@ -24,26 +25,24 @@ class ResultView: UIStackView {
         super.init(frame: frame)
     }
 
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//        underweightNormView.setGradientBackground(colors: [UIColor.BMI.overweight.cgColor, UIColor.BMI.norm.cgColor])
-//    }
-
     private func setupLayout() {
-        self.layoutIfNeeded()
         self.addArrangedSubview(resultLabel)
         self.addArrangedSubview(resultIndexContainer)
 
-        resultIndexContainer.addArrangedSubview(underweightView)
-        resultIndexContainer.addArrangedSubview(underweightNormView)
-        resultIndexContainer.addArrangedSubview(normView)
-        resultIndexContainer.addArrangedSubview(normOverweightView)
-        resultIndexContainer.addArrangedSubview(overweightView)
-        resultIndexContainer.addArrangedSubview(overweightObeseView)
-        resultIndexContainer.addArrangedSubview(obeseView)
+        resultIndexContainer.addArrangedSubview(arrowView)
+        resultIndexContainer.addArrangedSubview(resultIndexColors)
+        self.setupColorsContainer()
     }
 
-
+    private func setupColorsContainer() {
+        resultIndexColors.addArrangedSubview(underweightView)
+        resultIndexColors.addArrangedSubview(underweightNormView)
+        resultIndexColors.addArrangedSubview(normView)
+        resultIndexColors.addArrangedSubview(normOverweightView)
+        resultIndexColors.addArrangedSubview(overweightView)
+        resultIndexColors.addArrangedSubview(overweightObeseView)
+        resultIndexColors.addArrangedSubview(obeseView)
+    }
 
     let resultLabel: UILabel = {
         let label = UILabel()
@@ -53,6 +52,16 @@ class ResultView: UIStackView {
     }()
 
     let resultIndexContainer: UIStackView = {
+        let stackView = UIStackView()
+        stackView.backgroundColor = .clear
+        stackView.distribution = .fillEqually
+        stackView.axis = .vertical
+        return stackView
+    }()
+
+    let arrowView = ArrowView()
+
+    let resultIndexColors: UIStackView = {
         let stackView = UIStackView()
         stackView.backgroundColor = .clear
         stackView.distribution = .fillEqually

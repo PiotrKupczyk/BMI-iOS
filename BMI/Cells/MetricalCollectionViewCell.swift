@@ -149,6 +149,7 @@ class MetricalCollectionViewCell: AbstractCollectionViewCell {
 
     private func showResult(result: Double) {
         resultView.resultLabel.text = "\(result)"
+        resultView.arrowView.moveAndShow(to: CGPoint(x: 10, y: 0))
     }
 
     

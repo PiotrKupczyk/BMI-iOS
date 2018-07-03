@@ -38,8 +38,8 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let bounds = view.bounds
-        let navHeight = navigationController?.navigationBar.frame.height
-        return CGSize(width: bounds.width, height: bounds.height)
+        guard let navHeight = navigationController?.navigationBar.frame.height else {return .zero}
+        return CGSize(width: bounds.width, height: bounds.height - navHeight)
     }
 
     private func setUpNavigationBar() {
