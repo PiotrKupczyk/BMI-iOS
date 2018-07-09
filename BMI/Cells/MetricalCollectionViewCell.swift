@@ -36,8 +36,6 @@ class MetricalCollectionViewCell: AbstractCollectionViewCell {
         let labelWidth = CGFloat(60)
         
         container.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .zero, size: CGSize(width: 0, height: 2*self.bounds.height/3))
-
-        resultView.anchor(top: container.bottomAnchor, leading: self.safeAreaLayoutGuide.leadingAnchor, bottom: self.safeAreaLayoutGuide.bottomAnchor, trailing: self.safeAreaLayoutGuide.trailingAnchor)
         
         valuesContainer.anchor(top: container.topAnchor, leading: container.leadingAnchor, bottom: container.bottomAnchor, trailing: container.trailingAnchor, padding: UIEdgeInsets(top: 60, left: 60, bottom: -60, right: -60))
         
@@ -59,10 +57,9 @@ class MetricalCollectionViewCell: AbstractCollectionViewCell {
         countButton.anchor(top: weightContainer.bottomAnchor, leading: weightContainer.leadingAnchor, bottom: valuesContainer.bottomAnchor, trailing: weightContainer.trailingAnchor, padding: UIEdgeInsets(top: 60, left: 30, bottom: -60, right: -30))
 
         setupPickersLayout()
-
-//        setupResultContainerLayout()
-
-//        UIView.animate(withDuration: 0.5, animations: )
+        
+        resultView.anchor(top: container.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
+        let frame = resultView.frame
     }
 
     private func setupPickersLayout() {
@@ -108,8 +105,8 @@ class MetricalCollectionViewCell: AbstractCollectionViewCell {
 
         let bmiCounter = Bmi(centimeters: Double(splitedHeight)!, kilograms: Double(splitedWeight)!)
         let bmi = bmiCounter.count()
-
-        showResult(result: bmi.value)
+    
+//        resultView.showResult(bmi: bmi)
     }
     
     // MARK: - Set up pickers
@@ -143,13 +140,6 @@ class MetricalCollectionViewCell: AbstractCollectionViewCell {
         default:
             break
         }
-    }
-
-    //MARK: - show result
-
-    private func showResult(result: Double) {
-        resultView.resultLabel.text = "\(result)"
-        resultView.arrowView.moveAndShow(to: CGPoint(x: 10, y: 0))
     }
 
     

@@ -1,115 +1,106 @@
 //
-// Created by Piotr Kupczyk on 01.07.2018.
-// Copyright (c) 2018 Piotr Kupczyk. All rights reserved.
+//  ResultView.swift
+//  testApp
+//
+//  Created by Piotr Kupczyk on 08.07.2018.
+//  Copyright © 2018 Piotr Kupczyk. All rights reserved.
 //
 
 import UIKit
 
-class ResultView: UIStackView {
-
+class ResultView: UIView {
+    
+    private var subLayers = [CAShapeLayer]()
+    private let colors = [UIColor.BMI.underweight, UIColor.BMI.norm, UIColor.BMI.overweight, UIColor.BMI.obese]
+    
+    public func showResult() {
+        let layerToAnimate = self.subLayers[1]
+        let colorAnimation = CABasicAnimation(keyPath: "strokeColor")
+        colorAnimation.duration = 1.25
+        colorAnimation.fromValue = layerToAnimate.strokeColor
+        colorAnimation.toValue = UIColor.flatGreen.darken(byPercentage: 0.5)
+        colorAnimation.autoreverses = true
+        colorAnimation.repeatCount = 10
+        colorAnimation.fillMode = kCAFillModeBoth
+        
+        let lineWidthAnimation = CABasicAnimation(keyPath: "lineWidth")
+        lineWidthAnimation.duration = 1.25
+        lineWidthAnimation.fromValue = layerToAnimate.lineWidth
+        lineWidthAnimation.toValue = layerToAnimate.lineWidth + 10
+        lineWidthAnimation.autoreverses = true
+        lineWidthAnimation.repeatCount = 10
+        lineWidthAnimation.fillMode = kCAFillModeBoth
+        
+        layerToAnimate.add(colorAnimation, forKey: "strokeColor")
+        layerToAnimate.add(lineWidthAnimation, forKey: "lineWidth")
+        
+    }
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        drawView()
+    }
+    
+    private func drawView() {
+        let center = CGPoint(x: self.bounds.width/2, y: self.bounds.height/2)
+        let bigerAxis = min(self.bounds.height, self.bounds.width)
+        let radius = bigerAxis/2 - 32.0
+        let lineWidth:CGFloat = radius/2
+        
+        
+        let startAngle = 3*CGFloat.pi/4
+        let endAngle = 9*CGFloat.pi/4
+        let allAngle = endAngle - startAngle
+        let equalSpace:CGFloat = allAngle/CGFloat(colors.count)
+        
+        var startSubAngle = startAngle
+        var endSubAngle = startSubAngle + equalSpace
+        
+        for color in colors {
+            let circularPath = UIBezierPath(arcCenter: center, radius: radius, startAngle: startSubAngle, endAngle: endSubAngle, clockwise: true)
+            let subLayer = CAShapeLayer()
+            
+            //create colorfull part of the circle
+            subLayer.path = circularPath.cgPath
+            subLayer.lineWidth = lineWidth
+            subLayer.fillColor = UIColor.clear.cgColor
+            subLayer.strokeColor = color.cgColor
+            
+            //add shadows under
+            subLayer.shadowOpacity = 0.5
+            subLayer.shadowOffset = CGSize(width: 1.0, height: 2.0)
+            
+            //iterate to next circle
+            startSubAngle = endSubAngle
+            endSubAngle += equalSpace
+            self.layer.addSublayer(subLayer)
+            self.subLayers.append(subLayer)
+        }
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        drawView()
+    }
+    
     init() {
         super.init(frame: .zero)
-        self.backgroundColor = .white
-        self.distribution = .fillEqually
-        self.axis = .vertical
-
-        self.setupLayout()
-        arrowView.backgroundColor = .white
+        self.backgroundColor = .clear
+//        let label = UILabel()
+//        self.addSubview(label)
+//        label.text = "kot"
+//        label.anchor(top: self.topAnchor, leading: self.leadingAnchor, bottom: self.bottomAnchor, trailing: self.trailingAnchor)
+//
+//        DispatchQueue.main.async {
+//
+//        }
     }
-
-    required init(coder: NSCoder) {
-        super.init(coder: coder)
-    }
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
-
-    private func setupLayout() {
-        self.addArrangedSubview(resultLabel)
-        self.addArrangedSubview(resultIndexContainer)
-
-        resultIndexContainer.addArrangedSubview(arrowView)
-        resultIndexContainer.addArrangedSubview(resultIndexColors)
-        self.setupColorsContainer()
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-
-    private func setupColorsContainer() {
-        resultIndexColors.addArrangedSubview(underweightView)
-        resultIndexColors.addArrangedSubview(underweightNormView)
-        resultIndexColors.addArrangedSubview(normView)
-        resultIndexColors.addArrangedSubview(normOverweightView)
-        resultIndexColors.addArrangedSubview(overweightView)
-        resultIndexColors.addArrangedSubview(overweightObeseView)
-        resultIndexColors.addArrangedSubview(obeseView)
-    }
-
-    let resultLabel: UILabel = {
-        let label = UILabel()
-        label.backgroundColor = .white
-        label.textAlignment = .center
-        return label
-    }()
-
-    let resultIndexContainer: UIStackView = {
-        let stackView = UIStackView()
-        stackView.backgroundColor = .clear
-        stackView.distribution = .fillEqually
-        stackView.axis = .vertical
-        return stackView
-    }()
-
-    let arrowView = ArrowView()
-
-    let resultIndexColors: UIStackView = {
-        let stackView = UIStackView()
-        stackView.backgroundColor = .clear
-        stackView.distribution = .fillEqually
-        return stackView
-    }()
-
-    //MARK: - result index labels
-
-    let underweightView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.BMI.underweight
-        return view
-    }()
-
-    let underweightNormView: UIView = {
-        let view = UIView()
-        view.isHidden = false
-        view.setGradientBackground(colors: [UIColor.BMI.underweight.cgColor, UIColor.BMI.norm.cgColor])
-        return view
-    }()
-
-    let normView: UIView = {
-        let label = UIView()
-        label.backgroundColor = UIColor.BMI.norm
-        return label
-    }()
-
-    let normOverweightView: UIView = {
-        let view = UIView()
-        view.setGradientBackground(colors: [UIColor.BMI.norm.cgColor, UIColor.BMI.overweight.cgColor])
-        return view
-    }()
-
-    let overweightView: UIView = {
-        let label = UIView()
-        label.backgroundColor = UIColor.BMI.overweight
-        return label
-    }()
-
-    let overweightObeseView: UIView = {
-        let view = UIView()
-        view.setGradientBackground(colors: [UIColor.BMI.overweight.cgColor, UIColor.BMI.obese.cgColor])
-        return view
-    }()
-
-    let obeseView: UIView = {
-        let label = UIView()
-        label.backgroundColor = UIColor.BMI.obese
-        return label
-    }()
 }

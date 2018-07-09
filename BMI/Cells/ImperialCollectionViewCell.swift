@@ -85,7 +85,7 @@ class ImperialCollectionViewCell: AbstractCollectionViewCell {
         let bmiCounter = Bmi(feet: Double(splitedFeet)!, inches: Double(splitedInch)!, pounds: Double(splitedWeight)!)
         let bmi = bmiCounter.count()
 
-        resultLabel.text = "\(bmi.value)"
+//         resultLabel.text = "\(bmi.value)"
     }
 
     // MARK: - Pickers methods
@@ -126,7 +126,7 @@ class ImperialCollectionViewCell: AbstractCollectionViewCell {
 
     override func setupViews() {
         addSubview(container)
-        addSubview(resultLabel)
+//        addSubview(resultLabel)
         addSubview(feetPicker!)
         addSubview(inchesPicker!)
         addSubview(poundsPicker!)
@@ -149,8 +149,8 @@ class ImperialCollectionViewCell: AbstractCollectionViewCell {
         
         container.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .zero, size: CGSize(width: 0, height: 2*self.frame.height/3))
         
-        resultLabel.anchor(top: container.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
-        
+//        resultLabel.anchor(top: container.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
+//        
         valuesContainer.anchor(top: container.topAnchor, leading: container.leadingAnchor, bottom: container.bottomAnchor, trailing: container.trailingAnchor, padding: UIEdgeInsets(top: 60, left: 60, bottom: -60, right: -60))
         
         heightContainer.anchor(top: valuesContainer.topAnchor, leading: valuesContainer.leadingAnchor, bottom: nil, trailing: valuesContainer.trailingAnchor, padding: UIEdgeInsets(top: 4, left: 4, bottom: 0, right: -4), size: CGSize(width: 0, height: defaulHeight))

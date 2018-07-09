@@ -8,6 +8,8 @@
 import Foundation
 class Bmi {
 
+
+
     enum BmiIndex {
         case underweight
         case norm
@@ -18,15 +20,19 @@ class Bmi {
         static let allCases = [underweight, norm, overweight, obese, unknown]
         var range: Range<Double> {
             get {
+                let underweight = 18.5
+                let norm = 25.0
+                let overweight = 30.0
+                let obese = Double.infinity
                 switch self {
                 case .underweight:
-                    return 0.0..<18.5
+                    return 6.0..<underweight
                 case .norm:
-                    return 18.5..<25.0
+                    return underweight..<norm
                 case .overweight:
-                    return 25.0..<30
+                    return norm..<overweight
                 case .obese:
-                    return 30..<Double.infinity
+                    return overweight..<obese
                 default:
                     return 0.0..<0.1
                 }
