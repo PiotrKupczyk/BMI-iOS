@@ -78,22 +78,9 @@ class ResultView: UIView {
         }
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        drawView()
-    }
-    
     init() {
         super.init(frame: .zero)
         self.backgroundColor = .clear
-//        let label = UILabel()
-//        self.addSubview(label)
-//        label.text = "kot"
-//        label.anchor(top: self.topAnchor, leading: self.leadingAnchor, bottom: self.bottomAnchor, trailing: self.trailingAnchor)
-//
-//        DispatchQueue.main.async {
-//
-//        }
     }
     
     override init(frame: CGRect) {

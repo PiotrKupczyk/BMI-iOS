@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		834229A020F50D0F00E9A5CA /* CountButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342299F20F50D0F00E9A5CA /* CountButtonView.swift */; };
 		8387586E20DE21800089E452 /* MetricalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8387586D20DE21800089E452 /* MetricalCollectionViewCell.swift */; };
 		8387587320DE444B0089E452 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8387587220DE444B0089E452 /* Extensions.swift */; };
 		8387587520DE766F0089E452 /* ImperialCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8387587420DE766F0089E452 /* ImperialCollectionViewCell.swift */; };
-		8387587720DE76E80089E452 /* AbstractCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8387587620DE76E80089E452 /* AbstractCollectionViewCell.swift */; };
+		8387587720DE76E80089E452 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8387587620DE76E80089E452 /* BaseCell.swift */; };
 		8387588320E1916F0089E452 /* PickerSelectedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8387588220E1916F0089E452 /* PickerSelectedDelegate.swift */; };
 		83A69B9820DC004900F357B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A69B9720DC004900F357B8 /* AppDelegate.swift */; };
 		83A69B9A20DC004900F357B8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A69B9920DC004900F357B8 /* HomeViewController.swift */; };
@@ -26,10 +27,11 @@
 /* Begin PBXFileReference section */
 		4210D1B8BBAECE05A2E256FE /* Pods_BMI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BMI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		810F728B9C90BAFA7E3E5231 /* Pods-BMI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BMI.release.xcconfig"; path = "Pods/Target Support Files/Pods-BMI/Pods-BMI.release.xcconfig"; sourceTree = "<group>"; };
+		8342299F20F50D0F00E9A5CA /* CountButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountButtonView.swift; sourceTree = "<group>"; };
 		8387586D20DE21800089E452 /* MetricalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricalCollectionViewCell.swift; sourceTree = "<group>"; };
 		8387587220DE444B0089E452 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		8387587420DE766F0089E452 /* ImperialCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImperialCollectionViewCell.swift; sourceTree = "<group>"; };
-		8387587620DE76E80089E452 /* AbstractCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractCollectionViewCell.swift; sourceTree = "<group>"; };
+		8387587620DE76E80089E452 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		8387588220E1916F0089E452 /* PickerSelectedDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerSelectedDelegate.swift; sourceTree = "<group>"; };
 		83A69B9420DC004800F357B8 /* BMI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BMI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83A69B9720DC004900F357B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,7 +88,7 @@
 			children = (
 				8387586D20DE21800089E452 /* MetricalCollectionViewCell.swift */,
 				8387587420DE766F0089E452 /* ImperialCollectionViewCell.swift */,
-				8387587620DE76E80089E452 /* AbstractCollectionViewCell.swift */,
+				8387587620DE76E80089E452 /* BaseCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -97,14 +99,6 @@
 				8387587220DE444B0089E452 /* Extensions.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		8387588120E191490089E452 /* Delegates */ = {
-			isa = PBXGroup;
-			children = (
-				8387588220E1916F0089E452 /* PickerSelectedDelegate.swift */,
-			);
-			path = Delegates;
 			sourceTree = "<group>";
 		};
 		83A69B8B20DC004800F357B8 = {
@@ -128,7 +122,6 @@
 		83A69B9620DC004800F357B8 /* BMI */ = {
 			isa = PBXGroup;
 			children = (
-				8387588120E191490089E452 /* Delegates */,
 				8387587120DE443C0089E452 /* Extensions */,
 				8387586C20DE21620089E452 /* Cells */,
 				83A69BA920DC008700F357B8 /* BmiCounter */,
@@ -155,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				83D7FFD520F3B36600D3081D /* ResultView.swift */,
+				8342299F20F50D0F00E9A5CA /* CountButtonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -162,6 +156,7 @@
 		B6E0E41CFD0F13A86C58D4C7 /* Pickers */ = {
 			isa = PBXGroup;
 			children = (
+				8387588220E1916F0089E452 /* PickerSelectedDelegate.swift */,
 				B6E0EE47E88EE04FBC473FCC /* BasePicker.swift */,
 				B6E0EA1E6BF78CE969E0F135 /* BasePickerData.swift */,
 			);
@@ -280,8 +275,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				834229A020F50D0F00E9A5CA /* CountButtonView.swift in Sources */,
 				83A69B9A20DC004900F357B8 /* HomeViewController.swift in Sources */,
-				8387587720DE76E80089E452 /* AbstractCollectionViewCell.swift in Sources */,
+				8387587720DE76E80089E452 /* BaseCell.swift in Sources */,
 				83D7FFD620F3B36600D3081D /* ResultView.swift in Sources */,
 				8387586E20DE21800089E452 /* MetricalCollectionViewCell.swift in Sources */,
 				8387587520DE766F0089E452 /* ImperialCollectionViewCell.swift in Sources */,

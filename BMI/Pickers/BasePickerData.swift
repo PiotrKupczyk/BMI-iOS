@@ -10,16 +10,19 @@ import UIKit
 
 class BasePickerData: UIPickerView, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    var data: [Int]?
-    var unit: Unit?
-    var collectionDelegate: PickerSelectedDelegate?
+    var data: [Int]
+    var unit: Unit
+    var pickerDelegate: PickerSelectedDelegate?
+    var result = ""
     
     override init(frame: CGRect) {
+        data = [Int]()
+        unit = Unit.init(symbol: "kg")
         super.init(frame: frame)
     }
-    
-    init(data: [Int], unit: Unit, pickerTag: Int) {
-        super.init(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+
+    convenience init(data: [Int], unit: Unit, pickerTag: Int) {
+        self.init(frame: .zero)
         self.data = data
         self.unit = unit
         self.tag = pickerTag
@@ -34,14 +37,29 @@ class BasePickerData: UIPickerView, UIPickerViewDataSource, UIPickerViewDelegate
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return "\(data![row]) \(unit!.symbol)"
+        return "\(data[row]) \(unit.symbol)"
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return data!.count
+        return data.count
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        collectionDelegate?.didSelect(self, value: "\(data![row]) \(unit!.symbol)")
+        result = "\(data[row]) \(unit.symbol)"
     }
+    
+    public func notifyAboutResult(state: ButtonState) {
+        switch state {
+        case .done:
+            pickerDelegate?.didSelect(self, value: result)
+        case .cancel:
+            pickerDelegate?.didSelect(self, value: nil)
+        }
+    }
+    
+    public enum ButtonState {
+        case cancel
+        case done
+    }
+    
 }

@@ -14,12 +14,16 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-
         self.view.backgroundColor = .white
         setUpNavigationBar()
         setupCollectionView()
+        edgesForExtendedLayout = []
     }
 
+    override var prefersStatusBarHidden: Bool {
+        return false
+    }
+    
     open let items = ["Metric", "Imperial"]
 
     let segmentedControl = UISegmentedControl(items: ["Metric", "Imperial"])
@@ -31,15 +35,13 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: items[indexPath.row], for: indexPath)
-
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: items[indexPath.row], for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: items[0], for: indexPath)
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let bounds = view.bounds
-        guard let navHeight = navigationController?.navigationBar.frame.height else {return .zero}
-        return CGSize(width: bounds.width, height: bounds.height - navHeight)
+        return CGSize(width: self.view.bounds.width, height: self.view.bounds.height)
     }
 
     private func setUpNavigationBar() {
@@ -68,9 +70,13 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
             flowLayout.minimumLineSpacing = 0
             flowLayout.scrollDirection = .horizontal
         }
-        collectionView?.register(MetricalCollectionViewCell.self, forCellWithReuseIdentifier: items[0])
-        collectionView?.register(ImperialCollectionViewCell.self, forCellWithReuseIdentifier: items[1])
-        collectionView?.isPagingEnabled = true
+        guard let collectionView = collectionView else {return}
+        view.addSubview(collectionView)
+        collectionView.register(MetricalCollectionViewCell.self, forCellWithReuseIdentifier: items[0])
+//        collectionView.register(ImperialCollectionViewCell.self, forCellWithReuseIdentifier: items[1])
+        collectionView.isPagingEnabled = true
+        collectionView.delegate = self
+        collectionView.dataSource = self
     }
 
     override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
@@ -89,6 +95,16 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        let cell = collectionView?.visibleCells[0] as! BaseCell
+        collectionViewLayout.invalidateLayout()
+        if UIDevice.current.orientation.isLandscape {
+            cell.mainView.axis = .horizontal
+        } else {
+            cell.mainView.axis = .vertical
+        }
     }
 }
 

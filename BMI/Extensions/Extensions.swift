@@ -48,6 +48,21 @@ extension UIView {
             self.layer.insertSublayer(gradientLayer, at: 0)
         }
     }
+    
+    func addDarkBackground() {
+        let layer = CAShapeLayer()
+        let size = CGSize(width: self.bounds.size.width+32, height: self.bounds.height+32)
+        let rect = CGRect(origin: CGPoint(x: -16, y: -16), size: size)
+        let path = UIBezierPath(rect: rect)
+        layer.path = path.cgPath
+        layer.opacity = 0.2
+        layer.fillColor = UIColor.black.cgColor
+        self.layer.addSublayer(layer)
+    }
+    
+    func removeDarkBackground() {
+        _ = self.layer.sublayers?.popLast()
+    }
 }
 
 extension UIColor {
@@ -69,5 +84,18 @@ extension Double {
     func roundTo(places:Int) -> Double {
         let divisor = pow(10.0, Double(places))
         return (self * divisor).rounded() / divisor
+    }
+}
+
+extension UITextField {
+    func addUnderline() {
+        self.borderStyle = .none
+        self.layer.shadowOffset = CGSize(width: 0, height: 1)
+        self.layer.shadowOpacity = 1.0
+        self.layer.shadowRadius = 0.0
+        self.layer.shadowColor = UIColor.flatGray.cgColor
+        self.layer.masksToBounds = false
+        //trick that make view transparent and shadows is stil shown
+        self.backgroundColor = UIColor.white.withAlphaComponent(1.0)
     }
 }

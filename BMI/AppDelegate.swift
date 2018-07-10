@@ -17,22 +17,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.makeKeyAndVisible()
+        guard let window = window else {return false}
+        window.makeKeyAndVisible()
         
         let layout = UICollectionViewFlowLayout()
-        let rootViewController = HomeViewController(collectionViewLayout: layout)
-        let navigationController = UINavigationController(rootViewController: rootViewController)
-        
-        window?.rootViewController = navigationController
+        window.rootViewController = UINavigationController(rootViewController: HomeViewController(collectionViewLayout: layout))
 
         // MARK: -darker status bar
 
         let statusBarView = UIView()
         statusBarView.backgroundColor = UIColor.AppColors.darkPrimaryColor
-        window?.addSubview(statusBarView)
-        statusBarView.anchor(top: window?.topAnchor, leading: window?.leadingAnchor, bottom: nil, trailing: window?.trailingAnchor,
+        window.addSubview(statusBarView)
+        statusBarView.anchor(top: window.topAnchor, leading: window.leadingAnchor, bottom: nil, trailing: window.trailingAnchor,
                 size: CGSize(width: 0, height: 20))
-        window?.backgroundColor = .red
+
+//        let mainView = UIView()
+//        window.addSubview(mainView)
+//        mainView.anchor(top: statusBarView.bottomAnchor, leading: window.leadingAnchor, bottom: window.bottomAnchor, trailing: window.trailingAnchor)
+        window.backgroundColor = .clear
 
         return true
     }

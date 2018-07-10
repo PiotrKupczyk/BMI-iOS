@@ -48,10 +48,12 @@ class BasePicker: UIView {
 
     @objc private func doneClicked() {
         self.isHidden = true
+        pickerData?.notifyAboutResult(state: .done)
     }
 
     @objc private func cancelClicked() {
         self.isHidden = true
+        pickerData?.notifyAboutResult(state: .cancel)
     }
 
     init(data: [Int], unit: Unit, pickerTag: Int) {

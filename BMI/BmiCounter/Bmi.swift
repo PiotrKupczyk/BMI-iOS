@@ -7,9 +7,7 @@
 //
 import Foundation
 class Bmi {
-
-
-
+    
     enum BmiIndex {
         case underweight
         case norm
