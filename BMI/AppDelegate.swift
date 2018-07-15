@@ -20,8 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let window = window else {return false}
         window.makeKeyAndVisible()
         
-        let layout = UICollectionViewFlowLayout()
-        window.rootViewController = UINavigationController(rootViewController: HomeViewController(collectionViewLayout: layout))
+        window.rootViewController = UINavigationController(rootViewController: HomeViewController())
 
         // MARK: -darker status bar
 
@@ -31,9 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         statusBarView.anchor(top: window.topAnchor, leading: window.leadingAnchor, bottom: nil, trailing: window.trailingAnchor,
                 size: CGSize(width: 0, height: 20))
 
-//        let mainView = UIView()
-//        window.addSubview(mainView)
-//        mainView.anchor(top: statusBarView.bottomAnchor, leading: window.leadingAnchor, bottom: window.bottomAnchor, trailing: window.trailingAnchor)
         window.backgroundColor = .clear
 
         return true

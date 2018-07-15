@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MetricalCollectionViewCell: BaseCell {
+class BmiView: BaseCell {
 
     private struct Tags {
         static let heightPicker = 0

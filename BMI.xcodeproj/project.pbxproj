@@ -9,9 +9,8 @@
 /* Begin PBXBuildFile section */
 		832B589120F7BC8C00F06562 /* BmiIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832B589020F7BC8C00F06562 /* BmiIndex.swift */; };
 		834229A020F50D0F00E9A5CA /* CountButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342299F20F50D0F00E9A5CA /* CountButtonView.swift */; };
-		8387586E20DE21800089E452 /* MetricalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8387586D20DE21800089E452 /* MetricalCollectionViewCell.swift */; };
+		8387586E20DE21800089E452 /* BmiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8387586D20DE21800089E452 /* BmiView.swift */; };
 		8387587320DE444B0089E452 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8387587220DE444B0089E452 /* Extensions.swift */; };
-		8387587520DE766F0089E452 /* ImperialCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8387587420DE766F0089E452 /* ImperialCollectionViewCell.swift */; };
 		8387587720DE76E80089E452 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8387587620DE76E80089E452 /* BaseCell.swift */; };
 		8387588320E1916F0089E452 /* PickerSelectedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8387588220E1916F0089E452 /* PickerSelectedDelegate.swift */; };
 		83A69B9820DC004900F357B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A69B9720DC004900F357B8 /* AppDelegate.swift */; };
@@ -30,9 +29,8 @@
 		810F728B9C90BAFA7E3E5231 /* Pods-BMI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BMI.release.xcconfig"; path = "Pods/Target Support Files/Pods-BMI/Pods-BMI.release.xcconfig"; sourceTree = "<group>"; };
 		832B589020F7BC8C00F06562 /* BmiIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BmiIndex.swift; sourceTree = "<group>"; };
 		8342299F20F50D0F00E9A5CA /* CountButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountButtonView.swift; sourceTree = "<group>"; };
-		8387586D20DE21800089E452 /* MetricalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricalCollectionViewCell.swift; sourceTree = "<group>"; };
+		8387586D20DE21800089E452 /* BmiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BmiView.swift; sourceTree = "<group>"; };
 		8387587220DE444B0089E452 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		8387587420DE766F0089E452 /* ImperialCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImperialCollectionViewCell.swift; sourceTree = "<group>"; };
 		8387587620DE76E80089E452 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		8387588220E1916F0089E452 /* PickerSelectedDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerSelectedDelegate.swift; sourceTree = "<group>"; };
 		83A69B9420DC004800F357B8 /* BMI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BMI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +75,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8317657220FB57F900905C63 /* Base project files */ = {
+			isa = PBXGroup;
+			children = (
+				83A69B9E20DC004900F357B8 /* Assets.xcassets */,
+				83A69BA020DC004900F357B8 /* LaunchScreen.storyboard */,
+				83A69BA320DC004900F357B8 /* Info.plist */,
+			);
+			path = "Base project files";
+			sourceTree = "<group>";
+		};
 		8387586320DCD2990089E452 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -88,8 +96,6 @@
 		8387586C20DE21620089E452 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				8387586D20DE21800089E452 /* MetricalCollectionViewCell.swift */,
-				8387587420DE766F0089E452 /* ImperialCollectionViewCell.swift */,
 				8387587620DE76E80089E452 /* BaseCell.swift */,
 			);
 			path = Cells;
@@ -124,15 +130,13 @@
 		83A69B9620DC004800F357B8 /* BMI */ = {
 			isa = PBXGroup;
 			children = (
-				8387587120DE443C0089E452 /* Extensions */,
-				8387586C20DE21620089E452 /* Cells */,
-				83A69BA920DC008700F357B8 /* BmiCounter */,
 				83A69B9720DC004900F357B8 /* AppDelegate.swift */,
+				8317657220FB57F900905C63 /* Base project files */,
+				83A69BA920DC008700F357B8 /* BmiCounter */,
+				8387586C20DE21620089E452 /* Cells */,
+				8387587120DE443C0089E452 /* Extensions */,
+				B6E0E41CFD0F13A86C58D4C7 /* BasePickerView */,
 				8387586320DCD2990089E452 /* ViewControllers */,
-				83A69B9E20DC004900F357B8 /* Assets.xcassets */,
-				83A69BA020DC004900F357B8 /* LaunchScreen.storyboard */,
-				83A69BA320DC004900F357B8 /* Info.plist */,
-				B6E0E41CFD0F13A86C58D4C7 /* Pickers */,
 				B6E0E05E96D02BB9210CEDA3 /* Views */,
 			);
 			path = BMI;
@@ -150,20 +154,21 @@
 		B6E0E05E96D02BB9210CEDA3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8387586D20DE21800089E452 /* BmiView.swift */,
 				83D7FFD520F3B36600D3081D /* ResultView.swift */,
 				8342299F20F50D0F00E9A5CA /* CountButtonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		B6E0E41CFD0F13A86C58D4C7 /* Pickers */ = {
+		B6E0E41CFD0F13A86C58D4C7 /* BasePickerView */ = {
 			isa = PBXGroup;
 			children = (
 				8387588220E1916F0089E452 /* PickerSelectedDelegate.swift */,
 				B6E0EE47E88EE04FBC473FCC /* BasePicker.swift */,
 				B6E0EA1E6BF78CE969E0F135 /* BasePickerData.swift */,
 			);
-			path = Pickers;
+			path = BasePickerView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,8 +287,7 @@
 				83A69B9A20DC004900F357B8 /* HomeViewController.swift in Sources */,
 				8387587720DE76E80089E452 /* BaseCell.swift in Sources */,
 				83D7FFD620F3B36600D3081D /* ResultView.swift in Sources */,
-				8387586E20DE21800089E452 /* MetricalCollectionViewCell.swift in Sources */,
-				8387587520DE766F0089E452 /* ImperialCollectionViewCell.swift in Sources */,
+				8387586E20DE21800089E452 /* BmiView.swift in Sources */,
 				83A69B9820DC004900F357B8 /* AppDelegate.swift in Sources */,
 				83A69BAE20DC040300F357B8 /* Bmi.swift in Sources */,
 				8387588320E1916F0089E452 /* PickerSelectedDelegate.swift in Sources */,
@@ -426,7 +430,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WM3KRQ8CEV;
-				INFOPLIST_FILE = BMI/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/BMI/Base project files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.piotrkupczyk.BMI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -442,7 +446,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WM3KRQ8CEV;
-				INFOPLIST_FILE = BMI/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/BMI/Base project files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.piotrkupczyk.BMI;
 				PRODUCT_NAME = "$(TARGET_NAME)";

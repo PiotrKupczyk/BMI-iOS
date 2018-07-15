@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseCell: UICollectionViewCell, PickerSelectedDelegate, UITextFieldDelegate {    
+class BaseCell: UIView, PickerSelectedDelegate, UITextFieldDelegate {    
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
