@@ -6,39 +6,9 @@
 //  Copyright © 2018 Piotr Kupczyk. All rights reserved.
 //
 import Foundation
+import UIKit
 class Bmi {
-    
-    enum BmiIndex {
-        case underweight
-        case norm
-        case overweight
-        case obese
-        case unknown
-
-        static let allCases = [underweight, norm, overweight, obese, unknown]
-        var range: Range<Double> {
-            get {
-                let underweight = 18.5
-                let norm = 25.0
-                let overweight = 30.0
-                let obese = Double.infinity
-                switch self {
-                case .underweight:
-                    return 6.0..<underweight
-                case .norm:
-                    return underweight..<norm
-                case .overweight:
-                    return norm..<overweight
-                case .obese:
-                    return overweight..<obese
-                default:
-                    return 0.0..<0.1
-                }
-            }
-        }
-    }
-
-    typealias BmiResult = (value: Double, index: BmiIndex)
+    public typealias BmiResult = (value: Double, index: BmiIndex)
     
     init(centimeters: Double, kilograms: Double) {
         self.centimeters = Measurement(value: centimeters, unit: UnitLength.centimeters)
@@ -64,19 +34,19 @@ class Bmi {
         //mass in kg / height^2 in meters
         let bmi = kilograms.value/(pow(centimeters.converted(to: UnitLength.meters).value, 2))
         let bmiIndex = indexFromValue(bmi: bmi)
-        return BmiResult(value: bmi.roundTo(places: 2), index: bmiIndex)
+        return BmiResult(value: bmi.roundTo(places: 2), index: bmiIndex!)
     }
 
-    private func indexFromValue(bmi: Double) -> BmiIndex {
+    private func indexFromValue(bmi: Double) -> BmiIndex? {
         for bmiIndex in BmiIndex.allCases {
             if bmiIndex.range.contains(bmi) {
                 return bmiIndex
             }
         }
-        return BmiIndex.unknown
+        return nil
     }
 
-    //------------------------------Values getters and setters---------------------
+    
     
     //metric units
     private var centimeters: Measurement<Dimension>

@@ -31,6 +31,9 @@ class BasePicker: UIView {
         stackView.axis = .horizontal
         stackView.distribution = .equalSpacing
         stackView.alignment = .leading
+//        stackView.layer.borderWidth = 10.0
+//        stackView.layer.borderColor = UIColor.black.cgColor
+//        stackView.layer.masksToBounds = true
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.isHidden = false
         return stackView
@@ -81,6 +84,7 @@ class BasePicker: UIView {
         self.addSubview(buttonsContainerView)
         self.addSubview(pickerView)
         self.addSubview(separator)
+        
 
         buttonsContainerView.addArrangedSubview(cancelButton)
         buttonsContainerView.addArrangedSubview(doneButton)

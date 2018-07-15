@@ -46,7 +46,7 @@ class MetricalCollectionViewCell: BaseCell {
 
     @objc func heightOnClick() {
         if heightPicker!.isHidden {
-            mainView.addDarkBackground()
+            self.addDarkBackground()
             heightPicker?.show()
             print("clicked")
         }
@@ -54,31 +54,24 @@ class MetricalCollectionViewCell: BaseCell {
 
     @objc func weightOnClick() {
         if weightPicker!.isHidden {
-            mainView.addDarkBackground()
+            self.addDarkBackground()
             weightPicker?.show()
         }
     }
 
     @objc func countBmi() {
-        guard let splitedHeight = height.text else {
-            print("There is no height")
-            return}
-        guard let splitedWeight = weight.text else {
-            print("There is no weight")
-            return}
+        self.countButtonView.buttonUp()
+        guard let splitedHeight = height.text?.components(separatedBy: " ")[0] else {return}
+        guard let splitedWeight = weight.text?.components(separatedBy: " ")[0] else {return}
         
-        let weight = splitedWeight.components(separatedBy: " ")[0]
-        let height = splitedHeight.components(separatedBy: " ")[0]
-        
-        if weight.isEmpty {
+        if (splitedWeight.isEmpty) || (splitedHeight.isEmpty) {
             print("empty")
             return
         }
         
         let bmiCounter = Bmi(centimeters: Double(splitedHeight)!, kilograms: Double(splitedWeight)!)
         let bmi = bmiCounter.count()
-    
-//        resultView.showResult(bmi: bmi)
+        resultView.showResult(bmi: bmi)
     }
     
     // MARK: - Set up pickers

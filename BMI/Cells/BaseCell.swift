@@ -66,23 +66,6 @@ class BaseCell: UICollectionViewCell, PickerSelectedDelegate, UITextFieldDelegat
     //MARK: - count and result
     
     let countButtonView = CountButtonView()
-//    let countButton: UIButton = {
-//        let button = UIButton()
-//        button.titleLabel?.text = "Counter BMI"
-//        button.setTitle("Count", for: UIControlState.normal)
-//        button.setTitleColor(.black, for: .normal)
-//        button.titleLabel?.textColor = .black
-//        button.sizeToFit()
-//        DispatchQueue.main.async {
-//            let size = button.bounds.size
-//            let newSize = min(size.height, size.width)
-//            button.frame.size = CGSize(width: newSize, height: newSize)
-//            button.layer.cornerRadius = newSize/2
-//        }
-//        button.clipsToBounds = true
-//        button.backgroundColor = UIColor.AppColors.primaryColor
-//        return button
-//    }()
 
     //MARK: - Containers
 
@@ -102,7 +85,7 @@ class BaseCell: UICollectionViewCell, PickerSelectedDelegate, UITextFieldDelegat
         let stackView = UIStackView()
         stackView.backgroundColor = .clear
         stackView.axis = .vertical
-        stackView.distribution = .fillProportionally
+        stackView.distribution = .fillEqually
 //        stackView.alignment = .center
         stackView.spacing = 8
         return stackView
@@ -125,6 +108,17 @@ class BaseCell: UICollectionViewCell, PickerSelectedDelegate, UITextFieldDelegat
     }()
 
     let resultView = ResultView()
+    
+    internal func addDarkBackground() {
+        let layer = CAShapeLayer()
+        let size = CGSize(width: mainView.bounds.size.width+32, height: mainView.bounds.height+32)
+        let rect = CGRect(origin: CGPoint(x: -16, y: -16), size: size)
+        let path = UIBezierPath(rect: rect)
+        layer.path = path.cgPath
+        layer.opacity = 0.2
+        layer.fillColor = UIColor.black.cgColor
+        mainView.layer.addSublayer(layer)
+    }
     
     // MARK: - To override methods
     

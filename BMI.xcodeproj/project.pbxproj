@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		832B589120F7BC8C00F06562 /* BmiIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832B589020F7BC8C00F06562 /* BmiIndex.swift */; };
 		834229A020F50D0F00E9A5CA /* CountButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342299F20F50D0F00E9A5CA /* CountButtonView.swift */; };
 		8387586E20DE21800089E452 /* MetricalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8387586D20DE21800089E452 /* MetricalCollectionViewCell.swift */; };
 		8387587320DE444B0089E452 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8387587220DE444B0089E452 /* Extensions.swift */; };
@@ -27,6 +28,7 @@
 /* Begin PBXFileReference section */
 		4210D1B8BBAECE05A2E256FE /* Pods_BMI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BMI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		810F728B9C90BAFA7E3E5231 /* Pods-BMI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BMI.release.xcconfig"; path = "Pods/Target Support Files/Pods-BMI/Pods-BMI.release.xcconfig"; sourceTree = "<group>"; };
+		832B589020F7BC8C00F06562 /* BmiIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BmiIndex.swift; sourceTree = "<group>"; };
 		8342299F20F50D0F00E9A5CA /* CountButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountButtonView.swift; sourceTree = "<group>"; };
 		8387586D20DE21800089E452 /* MetricalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricalCollectionViewCell.swift; sourceTree = "<group>"; };
 		8387587220DE444B0089E452 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				83A69BAD20DC040300F357B8 /* Bmi.swift */,
+				832B589020F7BC8C00F06562 /* BmiIndex.swift */,
 			);
 			path = BmiCounter;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				83A69BAE20DC040300F357B8 /* Bmi.swift in Sources */,
 				8387588320E1916F0089E452 /* PickerSelectedDelegate.swift in Sources */,
 				8387587320DE444B0089E452 /* Extensions.swift in Sources */,
+				832B589120F7BC8C00F06562 /* BmiIndex.swift in Sources */,
 				B6E0E60D8951F100AE4657B7 /* BasePicker.swift in Sources */,
 				B6E0E8A7F62F3AB03F93ACAC /* BasePickerData.swift in Sources */,
 			);

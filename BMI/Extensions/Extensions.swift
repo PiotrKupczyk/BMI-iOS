@@ -34,31 +34,6 @@ extension UIView {
             heightAnchor.constraint(equalToConstant: size.height).isActive = true
         }
     }
-
-    func setGradientBackground(colors: [CGColor]) {
-        //It's safer if it's loaded async because in this way we're sure that gradient is loaded after viewDidLoad()
-        DispatchQueue.main.async {
-            let gradientLayer = CAGradientLayer()
-            gradientLayer.frame = self.bounds
-            gradientLayer.colors = colors
-            gradientLayer.locations = [0.0, 1.0]
-            gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
-            gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
-
-            self.layer.insertSublayer(gradientLayer, at: 0)
-        }
-    }
-    
-    func addDarkBackground() {
-        let layer = CAShapeLayer()
-        let size = CGSize(width: self.bounds.size.width+32, height: self.bounds.height+32)
-        let rect = CGRect(origin: CGPoint(x: -16, y: -16), size: size)
-        let path = UIBezierPath(rect: rect)
-        layer.path = path.cgPath
-        layer.opacity = 0.2
-        layer.fillColor = UIColor.black.cgColor
-        self.layer.addSublayer(layer)
-    }
     
     func removeDarkBackground() {
         _ = self.layer.sublayers?.popLast()
@@ -99,3 +74,83 @@ extension UITextField {
         self.backgroundColor = UIColor.white.withAlphaComponent(1.0)
     }
 }
+
+extension CGFloat {
+    /** Degrees to Radian **/
+    var degrees: CGFloat {
+        return self * (180.0 / .pi)
+    }
+    
+    /** Radians to Degrees **/
+    var radians: CGFloat {
+        return self / 180.0 * .pi
+    }
+}
+
+extension CALayer {
+    func drawCurvedString(text: NSAttributedString, angle: CGFloat, radius: CGFloat) {
+        var radAngle = angle.radians
+        
+        let textSize = text.boundingRect(
+            with: CGSize(width: .max, height: .max),
+            options: [.usesLineFragmentOrigin, .usesFontLeading],
+            context: nil)
+            .integral
+            .size
+        
+        let perimeter: CGFloat = 2 * .pi * radius
+        let textAngle: CGFloat = textSize.width / perimeter * 2 * .pi
+        
+        var textRotation: CGFloat = 0
+        var textDirection: CGFloat = 0
+        
+        if angle > CGFloat(10).radians, angle < CGFloat(170).radians {
+            // bottom string
+            textRotation = 0.5 * .pi
+            textDirection = -2 * .pi
+            radAngle += textAngle / 2
+        } else {
+            // top string
+            textRotation = 1.5 * .pi
+            textDirection = 2 * .pi
+            radAngle -= textAngle / 2
+        }
+        
+        for c in 0..<text.length {
+            let letter = text.attributedSubstring(from: NSRange(c..<c+1))
+            let charSize = letter.boundingRect(
+                with: CGSize(width: .max, height: .max),
+                options: [.usesLineFragmentOrigin, .usesFontLeading],
+                context: nil)
+                .integral
+                .size
+            
+            let letterAngle = (charSize.width / perimeter) * textDirection
+            let x = radius * cos(radAngle + (letterAngle / 2))
+            let y = radius * sin(radAngle + (letterAngle / 2))
+            
+            let singleChar = drawText(
+                on: self,
+                text: letter,
+                frame: CGRect(
+                    x: (self.frame.size.width / 2) - (charSize.width / 2) + x,
+                    y: (self.frame.size.height / 2) - (charSize.height / 2) + y,
+                    width: charSize.width,
+                    height: charSize.height))
+            self.addSublayer(singleChar)
+            singleChar.transform = CATransform3DMakeAffineTransform(CGAffineTransform(rotationAngle: radAngle - textRotation))
+            radAngle += letterAngle
+        }
+    }
+    
+    
+    func drawText(on layer: CALayer, text: NSAttributedString, frame: CGRect) -> CATextLayer {
+        let textLayer = CATextLayer()
+        textLayer.frame = frame
+        textLayer.string = text
+        textLayer.alignmentMode = kCAAlignmentCenter
+        textLayer.contentsScale = UIScreen.main.scale
+        return textLayer
+    }
+}
+

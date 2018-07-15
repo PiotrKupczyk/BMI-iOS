@@ -105,6 +105,8 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         } else {
             cell.mainView.axis = .vertical
         }
+        cell.resultView.setNeedsDisplay()
+        cell.countButtonView.setNeedsDisplay()
     }
 }
 
