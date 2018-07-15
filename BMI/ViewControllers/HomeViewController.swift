@@ -9,14 +9,13 @@
 import UIKit
 import Foundation
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, HomeControllerDelegate, PickerSelectedDelegate, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.view.backgroundColor = .white
         setUpNavigationBar()
-//        setupCollectionView()
         edgesForExtendedLayout = []
         self.view = BmiView()
     }
@@ -26,8 +25,6 @@ class HomeViewController: UIViewController {
     }
 
     private func setUpNavigationBar() {
-        
-        //Setup navigation bar
         navigationItem.title = "BMI"
 //        navigationController?.hidesBarsOnSwipe = true
 
@@ -43,6 +40,27 @@ class HomeViewController: UIViewController {
         }
         view.resultView.setNeedsDisplay()
         view.countButtonView.setNeedsDisplay()
+    }
+    
+    //MARK: - protocol methods
+    
+    func inchClicked() {
+        <#code#>
+    }
+    
+    func heightClicked() {
+        <#code#>
+    }
+    
+    func weightClicked() {
+        <#code#>
+    }
+    
+    func countButtonClicked() {
+        <#code#>
+    }
+    
+    func didSelect(_ sender: BasePickerData, value: String?) {
     }
 }
 

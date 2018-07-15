@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8317657520FBC9E100905C63 /* MetricalHeightContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317657420FBC9E100905C63 /* MetricalHeightContainer.swift */; };
+		8317657720FBCCB600905C63 /* ImperialHeightContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317657620FBCCB600905C63 /* ImperialHeightContainer.swift */; };
+		8317657920FBD19B00905C63 /* HomeControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317657820FBD19B00905C63 /* HomeControllerDelegate.swift */; };
 		832B589120F7BC8C00F06562 /* BmiIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 832B589020F7BC8C00F06562 /* BmiIndex.swift */; };
 		834229A020F50D0F00E9A5CA /* CountButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8342299F20F50D0F00E9A5CA /* CountButtonView.swift */; };
 		8387586E20DE21800089E452 /* BmiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8387586D20DE21800089E452 /* BmiView.swift */; };
 		8387587320DE444B0089E452 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8387587220DE444B0089E452 /* Extensions.swift */; };
-		8387587720DE76E80089E452 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8387587620DE76E80089E452 /* BaseCell.swift */; };
 		8387588320E1916F0089E452 /* PickerSelectedDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8387588220E1916F0089E452 /* PickerSelectedDelegate.swift */; };
 		83A69B9820DC004900F357B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A69B9720DC004900F357B8 /* AppDelegate.swift */; };
 		83A69B9A20DC004900F357B8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A69B9920DC004900F357B8 /* HomeViewController.swift */; };
@@ -27,11 +29,13 @@
 /* Begin PBXFileReference section */
 		4210D1B8BBAECE05A2E256FE /* Pods_BMI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BMI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		810F728B9C90BAFA7E3E5231 /* Pods-BMI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BMI.release.xcconfig"; path = "Pods/Target Support Files/Pods-BMI/Pods-BMI.release.xcconfig"; sourceTree = "<group>"; };
+		8317657420FBC9E100905C63 /* MetricalHeightContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricalHeightContainer.swift; sourceTree = "<group>"; };
+		8317657620FBCCB600905C63 /* ImperialHeightContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImperialHeightContainer.swift; sourceTree = "<group>"; };
+		8317657820FBD19B00905C63 /* HomeControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeControllerDelegate.swift; sourceTree = "<group>"; };
 		832B589020F7BC8C00F06562 /* BmiIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BmiIndex.swift; sourceTree = "<group>"; };
 		8342299F20F50D0F00E9A5CA /* CountButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountButtonView.swift; sourceTree = "<group>"; };
 		8387586D20DE21800089E452 /* BmiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BmiView.swift; sourceTree = "<group>"; };
 		8387587220DE444B0089E452 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		8387587620DE76E80089E452 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		8387588220E1916F0089E452 /* PickerSelectedDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerSelectedDelegate.swift; sourceTree = "<group>"; };
 		83A69B9420DC004800F357B8 /* BMI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BMI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83A69B9720DC004900F357B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,20 +89,22 @@
 			path = "Base project files";
 			sourceTree = "<group>";
 		};
+		8317657320FBC96700905C63 /* HeightContainer */ = {
+			isa = PBXGroup;
+			children = (
+				8317657420FBC9E100905C63 /* MetricalHeightContainer.swift */,
+				8317657620FBCCB600905C63 /* ImperialHeightContainer.swift */,
+			);
+			path = HeightContainer;
+			sourceTree = "<group>";
+		};
 		8387586320DCD2990089E452 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				83A69B9920DC004900F357B8 /* HomeViewController.swift */,
+				8317657820FBD19B00905C63 /* HomeControllerDelegate.swift */,
 			);
 			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		8387586C20DE21620089E452 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				8387587620DE76E80089E452 /* BaseCell.swift */,
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		8387587120DE443C0089E452 /* Extensions */ = {
@@ -133,7 +139,6 @@
 				83A69B9720DC004900F357B8 /* AppDelegate.swift */,
 				8317657220FB57F900905C63 /* Base project files */,
 				83A69BA920DC008700F357B8 /* BmiCounter */,
-				8387586C20DE21620089E452 /* Cells */,
 				8387587120DE443C0089E452 /* Extensions */,
 				B6E0E41CFD0F13A86C58D4C7 /* BasePickerView */,
 				8387586320DCD2990089E452 /* ViewControllers */,
@@ -154,6 +159,7 @@
 		B6E0E05E96D02BB9210CEDA3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8317657320FBC96700905C63 /* HeightContainer */,
 				8387586D20DE21800089E452 /* BmiView.swift */,
 				83D7FFD520F3B36600D3081D /* ResultView.swift */,
 				8342299F20F50D0F00E9A5CA /* CountButtonView.swift */,
@@ -285,16 +291,18 @@
 			files = (
 				834229A020F50D0F00E9A5CA /* CountButtonView.swift in Sources */,
 				83A69B9A20DC004900F357B8 /* HomeViewController.swift in Sources */,
-				8387587720DE76E80089E452 /* BaseCell.swift in Sources */,
 				83D7FFD620F3B36600D3081D /* ResultView.swift in Sources */,
 				8387586E20DE21800089E452 /* BmiView.swift in Sources */,
 				83A69B9820DC004900F357B8 /* AppDelegate.swift in Sources */,
 				83A69BAE20DC040300F357B8 /* Bmi.swift in Sources */,
 				8387588320E1916F0089E452 /* PickerSelectedDelegate.swift in Sources */,
+				8317657520FBC9E100905C63 /* MetricalHeightContainer.swift in Sources */,
 				8387587320DE444B0089E452 /* Extensions.swift in Sources */,
 				832B589120F7BC8C00F06562 /* BmiIndex.swift in Sources */,
+				8317657720FBCCB600905C63 /* ImperialHeightContainer.swift in Sources */,
 				B6E0E60D8951F100AE4657B7 /* BasePicker.swift in Sources */,
 				B6E0E8A7F62F3AB03F93ACAC /* BasePickerData.swift in Sources */,
+				8317657920FBD19B00905C63 /* HomeControllerDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
